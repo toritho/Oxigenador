@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+
+    
+    <!-- Cabecera con logotipo -->
+    <header class="bg-blue-500 text-white p-5 flex items-center justify-between">
+        <!-- Logotipo -->
+        <div class="flex items-center">
+            <img src="../img/logo_Ox_black.png" alt="Logo" class="w-12 h-12 mr-2">
+            <h1 class="text-2xl font-bold">Mi Proyecto</h1>
+        </div>
+    </header>
+
+
+    
+     <!-- Cabecera con logotipo y botones -->
+     <?php include 'header.php'; ?>
+     <!-- Cuerpo (contenedor principal) -->
+     <div class="max-w-2xl mx-auto p-6 text-center">
+        <!-- Contenido específico de la vista inicio -->
+        <h2 class="text-xl font-bold mb-4"> </h2>
+    
+        <!-- Formulario para cambiar el estado de la bomba -->
+        <form method="POST" action="on-off.php">
+            <button type="submit" name="toggle_bomba" class="bg-blue-500 text-white p-5 rounded hover:bg-blue-700 text-white font-extrabold text-lg ">
+                ON / OFF
+            </button>
+        </form>
+    </div>
+    
+    <!-- Cerrar la conexión a la base de datos -->
+    <?php include 'footer.php'; ?>
+
+
+
+
+    <!-- Cuerpo (contenedor principal) -->
+    <div class="max-w-2xl mx-auto p-6">
+
+        <!-- Botones para cada vista (debajo) -->
+        <div class="flex flex-col space-y-4 mt-4">
+            <a href="registro.html" class="bg-green-500 text-white py-3 px-6 rounded-lg hover:bg-green-600 focus:outline-none focus:shadow-outline-green active:bg-green-800">Registros</a>
+            <a href="programarhora.html" class="bg-yellow-500 text-white py-3 px-6 rounded-lg hover:bg-yellow-600 focus:outline-none focus:shadow-outline-yellow active:bg-yellow-800">Programación de Horas</a>
+            <a href="historial.html" class="bg-red-500 text-white py-3 px-6 rounded-lg hover:bg-red-600 focus:outline-none focus:shadow-outline-red active:bg-red-800">Historial</a>
+        </div>
+    </div>
+</body>
+</html>

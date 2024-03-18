@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
+    <!-- Agrega el enlace al archivo CSS generado por Tailwind -->
+    <link rel="stylesheet" href="./css/tailwind.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+
+<div class="main flex items-center justify-center min-h-screen">
+    <input type="checkbox" id="chk" class="hidden" aria-hidden="true">
+
+    <div class="signup bg-white p-8 rounded-lg shadow-md">
+        <form action="../Usuario/index.php" method="post" class="flex flex-col space-y-4">
+            <label for="chk" aria-hidden="true" class="sr-only">Registrar</label>
+            <input type="email" name="usuario" placeholder="Email" required="" class="px-4 py-2 border border-gray-300 rounded-md">
+            <input type="password" name="contraseña" placeholder="Password" required="" class="px-4 py-2 border border-gray-300 rounded-md">
+            <input class="button bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" type="submit" value="Registrar">
+        </form>
+    </div>
+
+    <div class="login bg-white p-8 rounded-lg shadow-md">
+        <form action="../Usuario/index.php" method="post" class="flex flex-col space-y-4">
+            <label for="chk" aria-hidden="true" class="sr-only">Login</label>
+            <input type="email" name="usuario" placeholder="Usuario" required="" class="px-4 py-2 border border-gray-300 rounded-md">
+            <input type="password" name="contraseña" placeholder="Password" required="" class="px-4 py-2 border border-gray-300 rounded-md">
+            <input class="button bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600" type="submit" value="Iniciar Sesión">
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+</html>
+

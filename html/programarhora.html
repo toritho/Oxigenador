@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto - Programación de Horas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Cabecera con logotipo y botones -->
+    <header class="bg-blue-500 text-white p-4 flex items-center justify-between">
+        <!-- Logotipo -->
+        <div class="flex items-center">
+            <img src="../img/logo_Ox_black.png" alt="Logo" class="w-12 h-12 mr-2">
+            <h1 class="text-2xl font-bold">Mi Proyecto</h1>
+        </div>
+
+        <!-- Botones para cada vista -->
+        <div class="flex justify-center items-center p-4">
+            <nav>
+                <ul class="flex space-x-14 list-none">
+
+                    <a href="inicio.html"
+                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
+
+                    <a href="registro.html"
+                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
+
+                    <a href="programarhora.html"
+                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación
+                        de Horas</a>
+
+                    <a href="historial.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo Energia</a>
+
+                    <a href="historial.html"
+                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
+
+                </ul>
+            </nav>
+        </div>
+
+
+        <!-- Botón para iniciar sesión -->
+        <div class="hidden lg:flex lg:w-1/7 lg:justify-end p-2 ">
+            <a href="#"
+                class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300">Log
+                in <span aria-hidden="true">&rarr;</span></a>
+        </div>
+
+    </header>
+
+
+
+    <form id="programarForm" class="bg-gray-100 p-4 rounded-lg shadow-md max-w-2xl mx-auto mt-10">
+
+        <label for="bombaSelector" class="block mb-5 text-lg font-bold ">Selecciona la bomba a programar:</label>
+        <select id="bombaSelector" onchange="mostrarControles()" class="w-full p-2 mb-4 border border-gray-300 rounded">
+            <!-- Opciones de las bombas -->
+
+            <!-- Agrega más opciones según sea necesario -->
+        </select>
+
+        <div id="controles" style="display: none; margin-top: 15px;">
+
+            <label for="horaEncendido" class="block mb-2">Hora de Encendido:</label>
+            <input type="time" id="horaEncendido" required class="w-full p-2 mb-4 border border-gray-300 rounded">
+
+            <label for="horaApagado" class="block mb-2">Hora de Apagado:</label>
+            <input type="time" id="horaApagado" required class="w-full p-2 mb-4 border border-gray-300 rounded">
+
+            <button type="button" id="guardarBtn"
+                class="bg-green-500 text-white p-2 rounded cursor-pointer">Guardar</button>
+        </div>
+    </form>
+
+
+
+
+    <script>
+
+        function mostrarControles() {
+            var bombaSelector = document.getElementById("bombaSelector");
+            var controles = document.getElementById("controles");
+
+            if (bombaSelector.value !== "") {
+                controles.style.display = "block";
+            } else {
+                controles.style.display = "none";
+            }
+        }
+
+
+    </script>
+
+
+    <!-- ... (código anterior) ... -->
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            llenarOpcionesBomba();
+
+            // Agrega un evento 'change' al select
+            document.getElementById("bombaSelector").addEventListener("change", function () {
+                obtenerDatosBomba();
+            });
+
+            document.getElementById("guardarBtn").addEventListener("click", function () {
+                guardarDatos();
+            });
+        });
+
+
+
+        function llenarOpcionesBomba() {
+            // Realiza una llamada Axios para obtener las opciones de las bombas
+            axios.get('../php/programarhora2.php')
+                .then(function (response) {
+                    var data = response.data;
+                    var select = document.getElementById("bombaSelector");
+
+                    select.innerHTML = '<option value="selec">Selecciona una bomba</option>';
+
+                    data.forEach(function (usuario) {
+                        var option = document.createElement("option");
+                        option.value = usuario.id;
+                        option.text = usuario.nombre;
+                        select.add(option);
+                    });
+                })
+                .catch(function (error) {
+                    console.error('Error al obtener opciones de bombas: ', error);
+                });
+        }
+
+
+
+
+        function obtenerDatosBomba() {
+            var bombaId = document.getElementById("bombaSelector").value;
+
+            if (bombaId !== "selec") {
+                // Realiza una llamada Axios para obtener datos del usuario
+                axios.get('../php/programarhora.php', {
+                    params: {
+                        id: bombaId
+                    }
+                })
+                    .then(function (response) {
+                        var data = response.data;
+                        console.log(data);
+
+                        document.getElementById("horaEncendido").value = data.h_encendido;
+                        document.getElementById("horaApagado").value = data.h_apagado;
+                    })
+                    .catch(function (error) {
+                        console.error('Error al obtener datos de bomba: ', error);
+                    });
+            }
+        }
+
+
+
+
+        function guardarDatos() {
+            var bombaId = document.getElementById("bombaSelector").value;
+            var horaEncendido = document.getElementById("horaEncendido").value;
+            var horaApagado = document.getElementById("horaApagado").value;
+
+
+
+            if (bombaId === "selec") {
+                alert("Por favor, selecciona una bomba.");
+                return;
+            }
+
+            if (horaEncendido === "" || horaApagado === "") {
+                alert("Por favor, completa todas las horas.");
+                return;
+            }
+
+            var fechaActual = new Date();
+            var fechaEncendido = new Date("2000-01-01T" + horaEncendido + ":00");
+            var fechaApagado = new Date("2000-01-01T" + horaApagado + ":00");
+
+            if (fechaApagado <= fechaEncendido) {
+                alert("La hora de apagado debe ser posterior a la hora de encendido.");
+                return;
+            }
+
+
+
+            var formData = new FormData();
+            formData.append("bombaId", bombaId);
+            formData.append("horaEncendido", horaEncendido);
+            formData.append("horaApagado", horaApagado);
+            axios.post('../php/programarhora-Guardado.php', formData)
+                .then(function (response) {
+                    console.log(response.data);
+                    alert(response.data.success);
+                })
+                .catch(function (error) {
+                    console.error('Error al guardar datos: ', error);
+                    alert('Error al guardar datos. Consulta la consola para más detalles.');
+                });
+
+            }
+
+
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>
