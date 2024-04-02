@@ -2,7 +2,7 @@
 // Conexión a la base de datos
 $servername = "localhost";
 $username = "root";
-$password = "123";
+$password = "";
 $database = "b-oxigenador";
 
 $conn = new mysqli($servername, $username, $password, $database);

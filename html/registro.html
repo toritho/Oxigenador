@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Proyecto - Registro</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 
 
-    
-    
+
+
 </head>
+
 <body class="bg-gray-100">
-    
+
     <!-- Cabecera con logotipo y botones -->
     <header class="bg-blue-500 text-white p-4 flex items-center justify-between">
         <!-- Logotipo -->
@@ -23,30 +26,39 @@
 
         <!-- Botones para cada vista -->
 
-<div class="flex justify-center items-center p-4">
-    <nav>
-        <ul class="flex space-x-14 list-none">
-     
-                <a href="inicio.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
+        <div class="flex justify-center items-center p-4">
+            <nav>
+                <ul class="flex space-x-14 list-none">
 
-                <a href="registro.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
-          
-                <a href="programarhora.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación de Horas</a>
+                    <a href="inicio.html"
+                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
 
-                <a href="historial.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo Energia</a>
+                    <a href="registro.html"
+                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
 
-                <a href="historial.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
-            </li>
-        </ul>
-    </nav>
-</div>
+                    <a href="programarhora.html"
+                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación
+                        de Horas</a>
 
-        
+                    <a href="historial.html"
+                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo
+                        Energia</a>
+
+                    <a href="historial.html"
+                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
         <!-- Botón para iniciar sesión -->
         <div class="hidden lg:flex lg:w-1/7 lg:justify-end p-2 ">
-            <a href="#" class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300">Log in <span aria-hidden="true">&rarr;</span></a>
+            <a href="#"
+                class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300">Log
+                in <span aria-hidden="true">&rarr;</span></a>
         </div>
-        
+
     </header>
 
     <!-- Cuerpo (contenedor principal) -->
@@ -56,52 +68,105 @@
         <h2 class="text-xl font-bold mb-4">Registros</h2>
 
         <!-- Tabla para mostrar los datos -->
-       <!-- Agrega las clases "text-left", "text-center" o "text-right" según la alineación que desees -->
-<!-- Agrega las clases "text-left", "text-center" o "text-right" según la alineación que desees -->
-<!-- Agrega las clases "text-left", "text-center" o "text-right" según la alineación que desees -->
-<table id="tabla" class="min-w-full bg-white border border-gray-300 rounded-md overflow-hidden shadow-md">
-    <thead>
-        <tr>
-            <th class="py-2 px-4 border-b bg-gray-300">ID</th>
-            <th class="py-2 px-4 border-b bg-gray-300">Nombre</th>
-            <th class="py-2 px-4 border-b bg-gray-300">Estado</th>
-        </tr>
-    </thead>
-    <tbody id="tablaBody" class="divide-y divide-gray-300">
-        <!-- El cuerpo de la tabla se llenará dinámicamente con JavaScript -->
-    </tbody>
-</table>
+        <!-- Agrega las clases "text-left", "text-center" o "text-right" según la alineación que desees -->
+        <!-- Agrega las clases "text-left", "text-center" o "text-right" según la alineación que desees -->
+        <!-- Agrega las clases "text-left", "text-center" o "text-right" según la alineación que desees -->
+        <table id="tabla" class="min-w-full bg-white border border-gray-300 rounded-md overflow-hidden shadow-md">
+            <thead>
 
+                <tr>
+                    <th class="py-2 px-4 border-b bg-gray-300">ID</th>
+                    <th class="py-2 px-4 border-b bg-gray-300">Nombre</th>
+                    <th class="py-2 px-4 border-b bg-gray-300">Estado</th>
+
+
+                </tr>
+            </thead>
+            <tbody id="tablaBody" class="divide-y divide-gray-300">
+                <!-- El cuerpo de la tabla se llenará dinámicamente con JavaScript -->
+            </tbody>
+        </table>
 
 
 
     </div>
 
-    
 
 
-      
     <script>
-        // Realizar la solicitud GET al archivo PHP para obtener los datos
         fetch('../php/registro.php')
             .then(response => response.json())
             .then(data => {
-                // Obtener el cuerpo de la tabla
                 const tablaBody = document.getElementById('tablaBody');
-    
+
                 data.forEach(row => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                        <td class="py-2 px-4 border-b text-center">${row.id}</td>
-                        <td class="py-2 px-4 border-b text-center">${row.nombre}</td>
-                        <td class="py-2 px-4 border-b text-center">${row.estado}</td>
-                    `;
+                <td class="py-2 px-4 border-b text-center">${row.id}</td>
+                <td class="py-2 px-4 border-b text-center">${row.nombre}</td>
+                <td class="py-2 px-4 border-b text-center"></td>
+            `;
+
+                    const celdaEstado = tr.querySelector('td:nth-child(3)');
+                    const boton = document.createElement('button');
+                    boton.setAttribute('class', 'estado-btn');
+                    boton.setAttribute('style', 'padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer;');
+                    boton.innerText = row.estado;
+
+
+                    // Añadir evento de clic al botón
+                    boton.addEventListener('click', function () {
+                        const id = row.id; // Obtener el ID del botón
+                        cambiarEstado(id, this, boton.innerText);
+                    });
+
+                    celdaEstado.appendChild(boton);
+
                     tablaBody.appendChild(tr);
                 });
             })
             .catch(error => console.error('Error al obtener los datos:', error));
+
+        function cambiarEstado(id, button, estado) {
+            try {
+                console.log('estado inicial: ' + estado);
+
+                // Convertir el estado a un número
+                const estadoNumero = parseInt(estado);
+
+                // Cambiar el estado (toggle)
+                const nuevoEstado = estadoNumero === 0 ? 1 : 0;
+
+                // Actualizar el estado en la base de datos
+                console.log('el id: ' + id);
+                console.log('el estado es: ' + nuevoEstado);
+
+                // Crear un objeto FormData y añadir las variables
+                var formData = new FormData();
+                formData.append('id', id);
+                formData.append('estado', nuevoEstado);
+
+                // Enviar la solicitud POST utilizando axios
+                axios.post('../php/actualizarestado.php', formData)
+                    .then(response => {
+                        console.log(response.data); // Imprimir la respuesta del PHP por consola
+                        // Actualizar el estado del botón solo si la solicitud es exitosa
+                        button.textContent = nuevoEstado;
+                    })
+                    .catch(error => {
+                        console.error('Error al cambiar el estado:', error);
+                    });
+            } catch (error) {
+                console.error('Error al cambiar el estado:', error);
+            }
+        }
+
+
+
+
     </script>
-    
+
 
 </body>
+
 </html>

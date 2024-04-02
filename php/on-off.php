@@ -1,19 +1,20 @@
 <?php
-// Incluir el archivo de conexión
-require './data.php';
+require_once '../conexion.php';
 
-// Lógica para cambiar el estado cuando se presiona el botón
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['toggle_bomba'])) {
-        // Cambiar el estado de la bomba
-        $nuevo_estado = ($_POST['estado_actual'] == 1) ? 0 : 1;
+// Obtener el ID del botón desde la solicitud POST
+$id = $_POST['id'];
 
-        // Actualizar el estado en la base de datos (sustituye 'nombre_tabla' y 'id_bomba' según tu estructura)
-        $actualizar_sql = "UPDATE nombre_tabla SET estado = $nuevo_estado WHERE id = id_bomba";
-        $conn->query($actualizar_sql);
-    }
+// Consulta para obtener el estado actual
+$sql = "SELECT estado FROM registro WHERE id = $id";
+$resultado = $conn->query($sql);
+
+if ($resultado->num_rows > 0) {
+  $fila = $resultado->fetch_assoc();
+  $estado = $fila['estado'];
+  echo $estado; // Devuelve solo el número del estado (1 o 0)
+} else {
+  echo "0"; // Si no se encuentra un estado, devolver 0 (asumiendo que 0 sea el estado por defecto)
 }
 
-// Cerrar la conexión
 $conn->close();
 ?>
