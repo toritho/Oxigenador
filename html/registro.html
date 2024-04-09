@@ -205,30 +205,65 @@
         }
 
 
-
-
         function agregarBomba() {
             var nombreBomba = document.getElementById('nombreBomba').value;
             console.log(nombreBomba);
-            // Crear objeto con los datos a enviar
-
 
             var Data = new FormData();
             Data.append('nombre', nombreBomba);
             Data.append('estado', 0);
 
-
-            // Enviar datos al backend usando Axios
             axios.post('../php/agregarbomba.php', Data)
                 .then(function (response) {
                     console.log(response);
-                    // Aquí puedes agregar código para manejar la respuesta del servidor, si es necesario
+                    const tablaBody = document.getElementById('tablaBody');
+
+                    // Obtener el ID de la última bomba en la tabla y sumarle 1
+                    const ultimoId = tablaBody.lastElementChild.querySelector('td:first-child').textContent;
+                    const nuevoId = parseInt(ultimoId) + 1;
+
+                    // Crear una nueva fila para la tabla
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
+                <td class="py-2 px-4 border-b text-center">${nuevoId}</td>
+                <td class="py-2 px-4 border-b text-center">${nombreBomba}</td>
+                <td class="py-2 px-4 border-b text-center">
+                    <button class="estado-btn" style="padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 3px">0</button>
+                    <button class="eliminar-btn" style="padding: 8px 16px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 3px">eliminar</button>
+                </td>
+            `;
+
+                    // Agregar la nueva fila a la tabla
+                    tablaBody.appendChild(tr);
+
+                    // Agregar funcionalidad a los botones
+                    tr.querySelector('.estado-btn').addEventListener('click', function () {
+                        // Aquí puedes agregar el código para cambiar el estado de la bomba
+                        console.log('Botón de estado presionado');
+
+                        // Obtener el botón
+                        const boton = this; // 'this' se refiere al botón que se hizo clic
+
+                        // Obtener el texto del botón
+
+
+                        cambiarEstado(nuevoId, boton, boton.innerText);
+
+
+                    });
+
+
+                    tr.querySelector('.eliminar-btn').addEventListener('click', function () {
+                        // Aquí puedes agregar el código para eliminar la bomba
+                        console.log('Botón de eliminar presionado');
+                        eliminarBomba(nuevoId, tr);
+                    });
                 })
                 .catch(function (error) {
                     console.error(error);
-                    // Aquí puedes manejar los errores en caso de que ocurran
                 });
         }
+
 
 
 
@@ -236,9 +271,14 @@
             try {
                 // Eliminar la fila de la tabla
                 row.remove();
+                console.log(id);
+
+                var Data2 = new FormData();
+                Data2.append('id', id);
+
 
                 // Realizar la solicitud para eliminar la bomba de la base de datos
-                axios.post('../php/eliminarbomba.php', { id: id })
+                axios.post('../php/eliminarbomba.php', Data2)
                     .then(response => {
                         console.log(response.data); // Imprimir la respuesta del PHP por consola
                     })
