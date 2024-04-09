@@ -9,7 +9,7 @@ $nombre = $_POST['nombre'];
 $estado = $_POST['estado'];
 
 // Preparar y ejecutar la consulta SQL para insertar los datos en la tabla
-$sql = "INSERT INTO registro (nombre, estado) VALUES ('$nombre', '$estado')";
+$sql = "INSERT INTO registro (nombre,id_usuario, estado) VALUES ('$nombre', 1,'$estado')";
 echo($sql);
 
 if ($conn->query($sql) === TRUE) {
