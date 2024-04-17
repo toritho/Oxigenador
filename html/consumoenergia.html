@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Proyecto - Registro</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 </head>
 
 <body class="bg-gray-100">
@@ -18,17 +22,29 @@
         <div class="flex justify-center items-center p-4">
             <nav>
                 <ul class="flex space-x-14 list-none">
-                    <li><a href="inicio.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a></li>
-                    <li><a href="registro.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a></li>
-                    <li><a href="programarhora.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación de Horas</a></li>
-                    <li><a href="consumoenergia.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo Energia</a></li>
-                    <li><a href="historial.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a></li>
+                    <li><a href="inicio.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
+                    </li>
+                    <li><a href="registro.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
+                    </li>
+                    <li><a href="programarhora.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación
+                            de Horas</a></li>
+                    <li><a href="consumoenergia.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo
+                            Energia</a></li>
+                    <li><a href="historial.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
+                    </li>
                 </ul>
             </nav>
         </div>
 
         <div class="hidden lg:flex lg:w-1/7 lg:justify-end p-2 ">
-            <a href="#" class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300">Log in <span aria-hidden="true">&rarr;</span></a>
+            <a href="#"
+                class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300">Log
+                in <span aria-hidden="true">&rarr;</span></a>
         </div>
     </header>
 
@@ -37,7 +53,8 @@
 
         <div class="mb-4">
             <label for="bombaSelect" class="block text-sm font-medium text-gray-700">Selecciona la bomba:</label>
-            <select id="bombaSelect" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            <select id="bombaSelect"
+                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                 <option value="1">Bomba 1</option>
                 <option value="2">Bomba 2</option>
                 <!-- Agrega más opciones según tus necesidades -->
@@ -46,20 +63,30 @@
 
         <div class="grid grid-cols-2 gap-4">
             <div>
-                <label for="opcionSelect" class="block text-sm font-medium text-gray-700">Selecciona la opción de visualización:</label>
-                <select id="opcionSelect" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                <label for="opcionSelect" class="block text-sm font-medium text-gray-700">Selecciona la opción de
+                    visualización:</label>
+                <select id="opcionSelect"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
                     <option value="dia">Por Día</option>
                     <option value="mes">Por Mes</option>
                 </select>
             </div>
             <div>
+                <label for="fechaInput" class="block text-sm font-medium text-gray-700">Selecciona la fecha:</label>
+                <input type="text" id="fechaInput" placeholder="Selecciona la fecha"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            </div>
+            <div>
                 <label for="kilovatioInput" class="block text-sm font-medium text-gray-700">Valor del Kilovatio:</label>
-                <input type="number" id="kilovatioInput" placeholder="Valor del Kilovatio" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                <input type="number" id="kilovatioInput" placeholder="Valor del Kilovatio"
+                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
             </div>
             <div class="mt-4">
-                <button onclick="calcularDuracion()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Mostrar Consumo</button>
+                <button onclick="calcularDuracion()"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Mostrar
+                    Consumo</button>
             </div>
-            
+
         </div>
 
         <table id="tabla" class="min-w-full bg-white border border-gray-300 rounded-md overflow-hidden shadow-md">
@@ -74,6 +101,31 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
+
+        function llenarOpcionesBomba() {
+            // Realiza una llamada Axios para obtener las opciones de las bombas
+            axios.get('../php/programarhora2.php')
+                .then(function (response) {
+                    var data = response.data;
+                    var select = document.getElementById("bombaSelect");
+
+                    select.innerHTML = '<option value="selec">Selecciona una bomba</option>';
+
+                    data.forEach(function (usuario) {
+                        var option = document.createElement("option");
+                        option.value = usuario.id;
+                        option.text = usuario.nombre;
+                        select.add(option);
+                    });
+                })
+                .catch(function (error) {
+                    console.error('Error al obtener opciones de bombas: ', error);
+                });
+        }
+
+        llenarOpcionesBomba();
+
+
         function calcularDuracion() {
             const p_id_registro = document.getElementById('bombaSelect').value;
             const p_fecha = '2024-04-09';
@@ -98,6 +150,14 @@
 
         calcularDuracion();
     </script>
+
+<script>
+    flatpickr("#fechaInput", {
+        dateFormat: "Y-m-d", // Formato de fecha
+        // Opciones adicionales si las necesitas
+    });
+</script>
+
 </body>
 
 </html>
