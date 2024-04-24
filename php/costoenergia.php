@@ -3,7 +3,8 @@
 require_once '../conexion.php';
 
 // Valor monetario por hora
-$valor_monetario_por_hora = $_POST['valor'];;
+
+$valor_monetario_por_hora = floatval($_POST['valor']);
 
 // ID de registro y fecha proporcionados por el usuario (reemplaza estos valores según tus necesidades)
 $id_registro = $_POST['id'];;

@@ -48,7 +48,7 @@
 
         <!-- Botón para iniciar sesión -->
         <div class="hidden lg:flex lg:w-1/7 lg:justify-end p-2 ">
-            <a href="#"
+            <a href="http://localhost/proyectoOxigenador/"
                 class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300">Log
                 in <span aria-hidden="true">&rarr;</span></a>
         </div>
@@ -90,10 +90,13 @@
             .then(data => {
                 // Llenar la tabla con los datos obtenidos
                 const tablaBody = document.getElementById('tabla');
+                const maxRows = 15; // Define el número máximo de filas a mostrar
 
-                data.forEach(row => {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
+                       // Limitar el número de datos a mostrar
+        data.slice(0, maxRows).forEach(row => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+
                         <td class="py-2 px-4 border-b text-center">${row.id}</td>
                         <td class="py-2 px-4 border-b text-center">${row.id_registro}</td>
                         <td class="py-2 px-4 border-b text-center">${row.estado}</td>
