@@ -12,47 +12,42 @@
 
 <body class="bg-gray-100">
     <!-- Cabecera con logotipo y botones -->
-    <header class="bg-blue-500 text-white p-4 flex items-center justify-between">
+    <header class="bg-blue-500 text-white p-4 flex flex-wrap items-center justify-between">
         <!-- Logotipo -->
         <div class="flex items-center">
             <img src="../img/logo_Ox_black.png" alt="Logo" class="w-12 h-12 mr-2">
             <h1 class="text-2xl font-bold">Mi Proyecto</h1>
         </div>
-
+    
         <!-- Botones para cada vista -->
-        <div class="flex justify-center items-center p-4">
+        <div class="flex justify-center items-center p-4 lg:w-5/6 lg:justify-center">
             <nav>
-                <ul class="flex space-x-14 list-none">
-
-                    <a href="inicio.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
-
-                    <a href="registro.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
-
-                    <a href="programarhora.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación
-                        de Horas</a>
-
-                    <a href="consumoenergia.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo
-                        Energia</a>
-
-                    <a href="historial.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
-
+                <ul class="flex flex-col lg:flex-row lg:justify-end space-y-4 lg:space-y-0 lg:space-x-14 list-none">
+                    <li>
+                        <a href="inicio.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="registro.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
+                    </li>
+                    <li>
+                        <a href="programarhora.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación de Horas</a>
+                    </li>
+                    <li>
+                        <a href="consumoenergia.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo Energia</a>
+                    </li>
+                    <li>
+                        <a href="historial.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
+                    </li>
                 </ul>
             </nav>
         </div>
+        
 
-
-        <!-- Botón para iniciar sesión -->
-        <div class="hidden lg:flex lg:w-1/7 lg:justify-end p-2 ">
-            <a href="http://localhost/proyectoOxigenador/"
-                class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300">Log
-                in <span aria-hidden="true">&rarr;</span></a>
+        <!-- Botón para iniciar sesión en tamaños de pantalla grandes -->
+        <div class="flex justify-center p-2 lg:justify-end">
+            <a href="http://localhost/proyectoOxigenador/" class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Log in <span aria-hidden="true">&rarr;</span></a>
         </div>
-
+        
     </header>
 
     <!-- Cuerpo (contenedor principal) -->
@@ -84,33 +79,41 @@
 
 
     <script>
+        
+        // Función para formatear la hora en formato de 12 horas según la zona horaria de una ciudad
+        function formatoHora(hora24) {
+            const zonaHoraria = 'America/Bogota'; // Zona horaria de Colombia/Bogotá
+            const horaFormateada = luxon.DateTime.fromFormat(hora24, 'HH:mm', { zone: zonaHoraria }).toLocaleString(luxon.DateTime.TIME_SIMPLE);
+            return horaFormateada;
+        }
+
         // Realizar la solicitud GET al archivo PHP para obtener los datos
         fetch('../php/historial.php')
-            .then(response => response.json())
+        .then(response => response.json())
             .then(data => {
                 // Llenar la tabla con los datos obtenidos
-                const tablaBody = document.getElementById('tabla');
-                const maxRows = 15; // Define el número máximo de filas a mostrar
+                const tablaBody = document.getElementById('tablaBody');
+                const maxRows = 20; // Define el número máximo de filas a mostrar
 
-                       // Limitar el número de datos a mostrar
-        data.slice(0, maxRows).forEach(row => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `
-
+                // Iterar sobre los datos y aplicar el sombreado
+                data.slice(0, maxRows).forEach((row, index) => {
+                    const tr = document.createElement('tr');
+                    tr.innerHTML = `
                         <td class="py-2 px-4 border-b text-center">${row.id}</td>
                         <td class="py-2 px-4 border-b text-center">${row.id_registro}</td>
                         <td class="py-2 px-4 border-b text-center">${row.estado}</td>
                         <td class="py-2 px-4 border-b text-center">${row.fecha}</td>
                         <td class="py-2 px-4 border-b text-center">${row.hora}</td>
-
                     `;
+                    // Aplicar sombreado a cada dos filas
+                    if (index % 4 < 2) {
+                        tr.classList.add('bg-gray-100');
+                    }
                     tablaBody.appendChild(tr);
                 });
             })
             .catch(error => console.error('Error al obtener los datos:', error));
     </script>
-
-
     |
     <script>
 

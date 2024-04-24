@@ -8,78 +8,63 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-</head>
-
-<body class="bg-gray-100">
-    <!-- Cabecera con logotipo y botones -->
-    <header class="bg-blue-500 text-white p-4 flex items-center justify-between">
+    <header class="bg-blue-500 text-white p-4 flex flex-wrap items-center justify-between">
         <!-- Logotipo -->
         <div class="flex items-center">
             <img src="../img/logo_Ox_black.png" alt="Logo" class="w-12 h-12 mr-2">
             <h1 class="text-2xl font-bold">Mi Proyecto</h1>
         </div>
+    
+     <!-- Botones para cada vista -->
+     <div class="flex justify-center items-center p-4 lg:w-5/6 lg:justify-center">
+        <nav>
+            <ul class="flex flex-col lg:flex-row lg:justify-end space-y-4 lg:space-y-0 lg:space-x-14 list-none">
+                <li>
+                    <a href="inicio.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
+                </li>
+                <li>
+                    <a href="registro.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
+                </li>
+                <li>
+                    <a href="programarhora.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación de Horas</a>
+                </li>
+                <li>
+                    <a href="consumoenergia.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo Energia</a>
+                </li>
+                <li>
+                    <a href="historial.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    
 
-        <!-- Botones para cada vista -->
-        <div class="flex justify-center items-center p-4">
-            <nav>
-                <ul class="flex space-x-14 list-none">
-
-                    <a href="inicio.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
-
-                    <a href="registro.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
-
-                    <a href="programarhora.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación
-                        de Horas</a>
-
-                    <a href="consumoenergia.html"
-                    class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo Energia</a>
-
-                    <a href="historial.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
-
-                </ul>
-            </nav>
-        </div>
-
-
-        <!-- Botón para iniciar sesión -->
-        <div class="hidden lg:flex lg:w-1/7 lg:justify-end p-2 ">
-            <a href="http://localhost/proyectoOxigenador/"
-                class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300">Log
-                in <span aria-hidden="true">&rarr;</span></a>
-        </div>
-
+    <!-- Botón para iniciar sesión en tamaños de pantalla grandes -->
+    <div class="flex justify-center p-2 lg:justify-end">
+        <a href="http://localhost/proyectoOxigenador/" class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Log in <span aria-hidden="true">&rarr;</span></a>
+    </div>
+    
+    
+    </header>
     </header>
 
-
-
     <form id="programarForm" class="bg-gray-100 p-4 rounded-lg shadow-md max-w-2xl mx-auto mt-10">
-
         <label for="bombaSelector" class="block mb-5 text-lg font-bold ">Selecciona la bomba a programar:</label>
         <select id="bombaSelector" onchange="mostrarControles()" class="w-full p-2 mb-4 border border-gray-300 rounded">
             <!-- Opciones de las bombas -->
-
             <!-- Agrega más opciones según sea necesario -->
         </select>
 
         <div id="controles" style="display: none; margin-top: 15px;">
-
             <label for="horaEncendido" class="block mb-2">Hora de Encendido:</label>
             <input type="time" id="horaEncendido" required class="w-full p-2 mb-4 border border-gray-300 rounded">
 
             <label for="horaApagado" class="block mb-2">Hora de Apagado:</label>
             <input type="time" id="horaApagado" required class="w-full p-2 mb-4 border border-gray-300 rounded">
 
-            <button type="button" id="guardarBtn"
-                class="bg-green-500 text-white p-2 rounded cursor-pointer">Guardar</button>
+            <button type="button" id="guardarBtn" class="bg-green-500 text-white p-2 rounded cursor-pointer">Guardar</button>
         </div>
-
     </form>
-
-
 
 
 
