@@ -134,6 +134,7 @@
         llenarOpcionesBomba();
 
 
+        
         function calcularDuracion() {
             const p_id_registro = document.getElementById('bombaSelect').value;
             const p_fecha = '2024-04-09';
@@ -156,43 +157,48 @@
                 });
         }
 
-        
-        
+        // Inicializar Flatpickr con la configuración predeterminada para seleccionar días
+        const fechaInput = document.getElementById('fechaInput');
+        const flatpickrInstance = flatpickr("#fechaInput", {});
 
- // Inicializar Flatpickr con la configuración predeterminada para seleccionar días
-const fechaInput = document.getElementById('fechaInput');
-const flatpickrInstance = flatpickr("#fechaInput", {});
+        // Función para actualizar Flatpickr con la configuración adecuada según la opción seleccionada
+        function updateFlatpickr(option) {
+            if (option === 'mes') {
+                flatpickrInstance.config.disable = [
+                    function(date) {
+                        // Deshabilitar la selección de días
+                        return !(date.getMonth() === flatpickrInstance.currentMonth &&
+                            date.getFullYear() === flatpickrInstance.currentYear);
+                    }
+                ];
+                flatpickrInstance.config.dateFormat = "Y-m"; // Establecer el formato de fecha a solo año y mes
+                flatpickrInstance.config.altFormat = "F Y"; // Opcional: cambiar el formato de visualización alternativo
+            } else {
+                flatpickrInstance.config.disable = false; // Habilitar Flatpickr
+                flatpickrInstance.config.dateFormat = "Y-m-d"; // Restaurar el formato de fecha predeterminado
+                flatpickrInstance.config.altFormat = ""; // Opcional: restablecer el formato de visualización alternativo
+            }
+        }
 
-// Función para actualizar Flatpickr con la configuración adecuada según la opción seleccionada
-function updateFlatpickr(option) {
-    if (option === 'mes') {
-        flatpickrInstance.config.disable = false; // Habilitar Flatpickr
-        flatpickrInstance.config.plugins = [];
-        flatpickrInstance.config.dateFormat = "Y-m"; // Establecer el formato de fecha a solo año y mes
-        flatpickrInstance.config.altFormat = "F Y"; // Opcional: cambiar el formato de visualización alternativo
-    } else {
-        flatpickrInstance.config.disable = false; // Habilitar Flatpickr
-        flatpickrInstance.config.plugins = []; // Quitar todos los plugins
-        flatpickrInstance.config.dateFormat = "Y-m-d"; // Restaurar el formato de fecha predeterminado
-        flatpickrInstance.config.altFormat = ""; // Opcional: restablecer el formato de visualización alternativo
-    }
-}
+        // Llamar a la función para actualizar Flatpickr cuando cambie la opción de visualización
+        document.getElementById('opcionSelect').addEventListener('change', function() {
+            const opcionSelect = this.value;
 
-// Llamar a la función para actualizar Flatpickr cuando cambie la opción de visualización
-document.getElementById('opcionSelect').addEventListener('change', function() {
-    const opcionSelect = this.value;
+            // Actualizar Flatpickr con la configuración adecuada según la opción seleccionada
+            updateFlatpickr(opcionSelect);
 
-    // Actualizar Flatpickr con la configuración adecuada según la opción seleccionada
-    updateFlatpickr(opcionSelect);
-});
+            // Si la opción seleccionada es "mes", actualizamos la fecha actual para que muestre solo año y mes
+            if (opcionSelect === 'mes') {
+                const fechaSeleccionada = fechaInput.value;
+                const fechaActual = new Date(fechaSeleccionada);
+                const year = fechaActual.getFullYear();
+                const month = fechaActual.getMonth() + 1; // Se suma 1 porque los meses van de 0 a 11
+                fechaInput.value = `${year}-${month.toString().padStart(2, '0')}`;
+            }
+        });
 
-// Inicializar Flatpickr con la configuración predeterminada para seleccionar días al cargar la página
-updateFlatpickr('dia');
-
-
-
-
-
+        // Inicializar Flatpickr con la configuración predeterminada para seleccionar días al cargar la página
+        updateFlatpickr('dia');
 
     </script>
 </body>
