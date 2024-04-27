@@ -139,6 +139,7 @@
             const p_id_registro = document.getElementById('bombaSelect').value;
             const p_fecha = '2024-04-09';
             const valorKilovatio = document.getElementById('kilovatioInput').value;
+            console.log(valorKilovatio);
 
             var Data2 = new FormData();
             Data2.append('id', p_id_registro);
@@ -150,7 +151,8 @@
                     console.log(response.data);
                     console.log("correcto")
                     var miH2 = document.getElementById("miH2");
-                    miH2.textContent = "El consumo total es: " + response.data.tiempo_transcurrido;
+                    const dato = response.data.costo_total.toString();
+                    miH2.textContent = "El precio de la energia consumida es " + dato;
                 })
                 .catch(error => {
                     console.error('Error al eliminar la bomba:', error);

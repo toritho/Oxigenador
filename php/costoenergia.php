@@ -2,13 +2,12 @@
 
 require_once '../conexion.php';
 
-// Valor monetario por hora
-
-$valor_monetario_por_hora = floatval($_POST['valor']);
+// Precio del kilovatio por hora
+$precio_kilovatio_por_hora = ($_POST['valor']);
 
 // ID de registro y fecha proporcionados por el usuario (reemplaza estos valores según tus necesidades)
-$id_registro = $_POST['id'];;
-$fecha_consulta = $_POST['fecha'];;
+$id_registro = $_POST['id'];
+$fecha_consulta = $_POST['fecha'];
 
 // Consulta SQL para obtener los datos necesarios
 $sql = "SELECT id_registro, fecha, hora, estado FROM historial WHERE id_registro = $id_registro AND fecha = '$fecha_consulta' ORDER BY hora";
@@ -37,12 +36,17 @@ if ($result->num_rows > 0) {
         $hora_anterior = $row['hora'];
     }
     
-    // Calcular el costo
-    $costo = ($tiempo_total / 3600) * $valor_monetario_por_hora; // Convertir el tiempo total de segundos a horas
+    // Convertir el tiempo total de segundos a horas
+    $tiempo_total_horas = $tiempo_total / 3600;
+
+    
+    // Calcular el costo multiplicando el precio del kilovatio por hora por el tiempo total en horas
+    $costo = $precio_kilovatio_por_hora * $tiempo_total_horas;
+    
     
     // Agregar resultados al array de respuesta
-    $response['tiempo_transcurrido'] = gmdate("H:i:s", $tiempo_total);
-    $response['costo_total'] = $costo;
+    $response['costo_total'] = $precio_kilovatio_por_hora * $tiempo_total_horas;
+    
     
 } else {
     $response['error'] = "No se encontraron registros para el ID de registro y la fecha proporcionados.";
