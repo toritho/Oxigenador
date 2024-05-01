@@ -34,11 +34,11 @@
 <body class="bg-gray-100">
 
     <!-- Cabecera con logotipo y botones -->
-    <header class="bg-blue-500 text-white p-4 flex flex-wrap items-center justify-between">
+    <header class="bg-blue-900 text-white p-4 flex flex-wrap items-center justify-between">
         <!-- Logotipo -->
         <div class="flex items-center">
-            <img src="../img/logo_Ox_black.png" alt="Logo" class="w-12 h-12 mr-2">
-            <h1 class="text-2xl font-bold">AquaOx</h1>
+            <img src="../img/logo_Ox_blue.png" alt="Logo" class="w-12 h-12 mr-2">
+            <h1 class="text-2xl font-bold"><a href="inicio.html"> AquaOx </a></h1>
         </div>
 
         <!-- Botones para cada vista -->
@@ -89,7 +89,7 @@
     </header>
 
     <!-- Menú desplegable en dispositivos móviles -->
-    <div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-500 text-white ">
+    <div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-900 text-white ">
         <ul class="flex flex-col space-y-4 list-none">
             <li>
                 <a href="inicio.html" class="font-extrabold text-lg hover:underline"
@@ -135,10 +135,6 @@
     </script>
 
 
-        <!-- Botón para iniciar sesión en tamaños de pantalla grandes -->
-        <div class="flex justify-center p-2 lg:justify-end">
-            <a href="http://localhost/proyectoOxigenador/" class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Log in <span aria-hidden="true">&rarr;</span></a>
-        </div>
         
     </header>
 
@@ -240,7 +236,7 @@
                     console.log("correcto")
                     var miH2 = document.getElementById("miH2");
                     const dato = response.data.costo_total.toString();
-                    miH2.textContent = "El precio de la energia consumida es " + dato;
+                    miH2.textContent = "El precio de la energia consumida es $" + dato + "Pesos ";
                 })
                 .catch(error => {
                     console.error('Error al eliminar la bomba:', error);

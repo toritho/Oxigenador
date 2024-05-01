@@ -31,11 +31,11 @@
 <body class="bg-gray-100">
 
     <!-- Cabecera con logotipo y botones -->
-    <header class="bg-blue-500 text-white p-4 flex flex-wrap items-center justify-between">
+    <header class="bg-blue-900 text-white p-4 flex flex-wrap items-center justify-between">
         <!-- Logotipo -->
-        <div class="flex items-center">
-            <img src="../img/logo_Ox_black.png" alt="Logo" class="w-12 h-12 mr-2">
-            <h1 class="text-2xl font-bold">AquaOx</h1>
+        <div class="flex items-center" >
+            <img src="../img/logo_Ox_blue.png" alt="Logo" class="w-12 h-12 mr-2">
+            <h1 class="text-2xl font-bold"><a href="inicio.html"> AquaOx </a></h1>
         </div>
 
         <!-- Botones para cada vista -->
@@ -86,7 +86,7 @@
     </header>
 
     <!-- Menú desplegable en dispositivos móviles -->
-    <div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-500 text-white ">
+    <div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-900 text-white ">
         <ul class="flex flex-col space-y-4 list-none">
             <li>
                 <a href="inicio.html" class="font-extrabold text-lg hover:underline"
@@ -154,7 +154,7 @@
                         class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                         id="nombreBomba" type="text" placeholder="Ingrese el nombre de la bomba">
                     <button
-                        class="bg-green-600 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline"
                         type="button" onclick="agregarBomba()">
                         Agregar Bomba
                     </button>
@@ -206,7 +206,7 @@
                 const celdaEstado = tr.querySelector('td:nth-child(3)');
                 const boton = document.createElement('button');
                 boton.setAttribute('class', 'estado-btn');
-                boton.setAttribute('style', 'width: 70px; padding: 9px 18px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 5px');
+                boton.setAttribute('style', 'width: 70px; padding: 9px 18px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 5px');
                 boton.innerText = row.estado;
 
 
