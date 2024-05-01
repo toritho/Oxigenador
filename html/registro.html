@@ -4,18 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Proyecto - Registro</title>
+    <title>Registro</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!--link rel="stylesheet" href="registro.css"-->
 
+    <style>
+        /* Estilos personalizados */
+        .mobile-menu {
+            max-height: 0;
+            /* Por defecto oculto en dispositivos móviles */
+            overflow: hidden;
+            /* Oculta el desbordamiento */
+            transition: max-height 0.5s ease;
+            /* Transición para suavizar la aparición */
+        }
 
-
-
-
+        .mobile-menu.visible {
+            max-height: 100vh;
+            /* Altura máxima para el menú */
+        }
+    </style>
 
 </head>
-
 
 <body class="bg-gray-100">
 
@@ -24,201 +35,283 @@
         <!-- Logotipo -->
         <div class="flex items-center">
             <img src="../img/logo_Ox_black.png" alt="Logo" class="w-12 h-12 mr-2">
-            <h1 class="text-2xl font-bold">Mi Proyecto</h1>
+            <h1 class="text-2xl font-bold">AquaOx</h1>
         </div>
-    
+
         <!-- Botones para cada vista -->
         <div class="flex justify-center items-center p-4 lg:w-5/6 lg:justify-center">
-            <nav>
+            <nav class="hidden lg:block"> <!-- Oculto en dispositivos móviles -->
                 <ul class="flex flex-col lg:flex-row lg:justify-end space-y-4 lg:space-y-0 lg:space-x-14 list-none">
                     <li>
-                        <a href="inicio.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
+                        <a href="inicio.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
                     </li>
                     <li>
-                        <a href="registro.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
+                        <a href="registro.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
                     </li>
                     <li>
-                        <a href="programarhora.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación de Horas</a>
+                        <a href="programarhora.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación
+                            de Horas</a>
                     </li>
                     <li>
-                        <a href="consumoenergia.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo Energia</a>
+                        <a href="consumoenergia.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo
+                            Energia</a>
                     </li>
                     <li>
-                        <a href="historial.html" class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
+                        <a href="historial.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
                     </li>
                 </ul>
             </nav>
-        </div>
-        
 
-        <!-- Botón para iniciar sesión en tamaños de pantalla grandes -->
-        <div class="flex justify-center p-2 lg:justify-end">
-            <a href="http://localhost/proyectoOxigenador/" class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Log in <span aria-hidden="true">&rarr;</span></a>
+            <!-- Botón para mostrar el menú en dispositivos móviles -->
+            <div class="flex justify-end">
+                <button id="mobileMenuBtn"
+                    class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 bg-gradient-to-t from-purple-600 to-blue-600 py-2 px-4 rounded-md">
+                    Menú <span aria-hidden="true">&darr;</span>
+                </button>
+            </div>
+
+
+
+
         </div>
-        
-    
+
+
+
+
     </header>
-    
 
-    <!-- Cuerpo (contenedor principal) -->
-    <div class="max-w-2xl mx-auto p-6">
-
-        <!-- Contenido específico de la vista registro -->
-        <h2 class="text-xl font-bold mb-4">Registros</h2>
-
-
-
-        <!-- Formulario para agregar una nueva bomba -->
-        <div class="mt-8">
-            <h2 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Agregar Nueva Bomba</h2>
-            <form id="formularioBomba" class="w-full max-w-lg">
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full px-3 flex">
-                         <input
-                            class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-                            id="nombreBomba" type="text" placeholder="Ingrese el nombre de la bomba">
-                        <button
-                            class="bg-green-600 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline"
-                            type="button" onclick="agregarBomba()">
-                            Agregar Bomba
-                        </button>
-
-                    </div>
+    <!-- Menú desplegable en dispositivos móviles -->
+    <div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-500 text-white ">
+        <ul class="flex flex-col space-y-4 list-none">
+            <li>
+                <a href="inicio.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Inicio</a>
+            </li>
+            <li>
+                <a href="registro.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Registros</a>
+            </li>
+            <li>
+                <a href="programarhora.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Programación de Horas</a>
+            </li>
+            <li>
+                <a href="consumoenergia.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Consumo Energia</a>
+            </li>
+            <li>
+                <a href="historial.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Historial</a>
+            </li>
+            <li>
+                <!-- Botón para iniciar sesión en tamaños de pantalla grandes -->
+                <div class="flex justify-center p-2 lg:justify-end">
+                    <a href="http://localhost/proyectoOxigenador/"
+                        class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Salir
+                        <span aria-hidden="true">&rarr;</span></a>
                 </div>
-            </form>
-        </div>
-
-
-
-        <!-- Tabla para mostrar los datos -->
-        <!-- Agrega las clases "text-left", "text-center" o "text-right" según la alineación que desees -->
-        <!-- Agrega las clases "text-left", "text-center" o "text-right" según la alineación que desees -->
-        <!-- Agrega las clases "text-left", "text-center" o "text-right" según la alineación que desees -->
-        <table id="tabla" class="min-w-full bg-white border border-gray-300 rounded-md overflow-hidden shadow-md">
-            <thead>
-
-                <tr>
-                    <th class="py-2 px-4 border-b bg-gray-300">ID</th>
-                    <th class="py-2 px-4 border-b bg-gray-300">Nombre</th>
-                    <th class="py-2 px-4 border-b bg-gray-300">Estado</th>
-
-
-                </tr>
-            </thead>
-            <tbody id="tablaBody" class="divide-y divide-gray-300">
-                <!-- El cuerpo de la tabla se llenará dinámicamente con JavaScript -->
-            </tbody>
-        </table>
-
+            </li>
+        </ul>
 
     </div>
 
-    <script>
-        fetch('../php/registro.php')
-            .then(response => response.json())
-            .then(data => {
-                const tablaBody = document.getElementById('tablaBody');
 
-                data.forEach(row => {
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
+
+    <script>
+        // JavaScript para mostrar/ocultar el menú en dispositivos móviles
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('visible');
+        });
+    </script>
+
+
+</body>
+
+
+<!-- Cuerpo (contenedor principal) -->
+<div class="max-w-2xl mx-auto p-6">
+
+    <!-- Contenido específico de la vista registro -->
+    <h2 class="text-xl font-bold mb-4">Registros</h2>
+
+
+
+    <!-- Formulario para agregar una nueva bomba -->
+    <div class="mt-8">
+        <h2 class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Agregar Nueva Bomba</h2>
+        <form id="formularioBomba" class="w-full max-w-lg">
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3 flex">
+                    <input
+                        class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                        id="nombreBomba" type="text" placeholder="Ingrese el nombre de la bomba">
+                    <button
+                        class="bg-green-600 hover:bg-blue-700 text-white font-bold py-2 px-4 ml-2 rounded focus:outline-none focus:shadow-outline"
+                        type="button" onclick="agregarBomba()">
+                        Agregar Bomba
+                    </button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+
+    <!-- Tabla para mostrar los datos -->
+    <!-- Agrega las clases "text-left", "text-center" o "text-right" según la alineación que desees -->
+    <!-- Agrega las clases "text-left", "text-center" o "text-right" según la alineación que desees -->
+    <!-- Agrega las clases "text-left", "text-center" o "text-right" según la alineación que desees -->
+    <table id="tabla" class="min-w-full bg-white border border-gray-300 rounded-md overflow-hidden shadow-md">
+        <thead>
+
+            <tr>
+                <th class="py-2 px-4 border-b bg-gray-300">ID</th>
+                <th class="py-2 px-4 border-b bg-gray-300">Nombre</th>
+                <th class="py-2 px-4 border-b bg-gray-300">Estado</th>
+
+
+            </tr>
+        </thead>
+        <tbody id="tablaBody" class="divide-y divide-gray-300">
+            <!-- El cuerpo de la tabla se llenará dinámicamente con JavaScript -->
+        </tbody>
+    </table>
+
+
+</div>
+
+<script>
+    fetch('../php/registro.php')
+        .then(response => response.json())
+        .then(data => {
+            const tablaBody = document.getElementById('tablaBody');
+
+            data.forEach(row => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
                 <td class="py-2 px-4 border-b text-center">${row.id}</td>
                 <td class="py-2 px-4 border-b text-center">${row.nombre}</td>
                 <td class="py-2 px-4 border-b text-center"></td>
             `;
 
-                    const celdaEstado = tr.querySelector('td:nth-child(3)');
-                    const boton = document.createElement('button');
-                    boton.setAttribute('class', 'estado-btn');
-                    boton.setAttribute('style', 'padding: 8px 16px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 3px');
-                    boton.innerText = row.estado;
+                const celdaEstado = tr.querySelector('td:nth-child(3)');
+                const boton = document.createElement('button');
+                boton.setAttribute('class', 'estado-btn');
+                boton.setAttribute('style', 'width: 70px; padding: 9px 18px; background-color: #4CAF50; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 5px');
+                boton.innerText = row.estado;
 
 
-                    // Añadir evento de clic al botón
-                    boton.addEventListener('click', function () {
-                        const id = row.id; // Obtener el ID del botón
-                        cambiarEstado(id, this, boton.innerText);
 
-                    });
 
-                    celdaEstado.appendChild(boton)
-
-                    const celdaEliminar = tr.querySelector('td:nth-child(3)');
-                    const botonEliminar = document.createElement('button');
-                    botonEliminar.setAttribute('class', 'eliminar-btn');
-                    botonEliminar.setAttribute('style', 'padding: 8px 16px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 3px');
-                    botonEliminar.innerText = 'eliminar';
-
-                    // Añadir evento de clic al botón de eliminar
-                    botonEliminar.addEventListener('click', function () {
-                        const id = row.id; // Obtener el ID de la bomba a eliminar
-                        eliminarBomba(id, tr); // Llamar a la función para eliminar la bomba
-                    });
-
-                    celdaEliminar.appendChild(botonEliminar);
-
-                    tablaBody.appendChild(tr);
+                // Añadir evento de clic al botón
+                boton.addEventListener('click', function () {
+                    const id = row.id; // Obtener el ID del botón
+                    cambiarEstado(id, this, boton.innerText);
 
                 });
-            })
-            .catch(error => console.error('Error al obtener los datos:', error));
+
+                celdaEstado.appendChild(boton)
+
+                const celdaEliminar = tr.querySelector('td:nth-child(3)');
+                const botonEliminar = document.createElement('button');
+                botonEliminar.setAttribute('class', 'eliminar-btn');
+                botonEliminar.setAttribute('style', 'padding: 8px 15px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 3px');
+                botonEliminar.innerText = 'eliminar';
 
 
-        function cambiarEstado(id, button, estado) {
-            try {
-                console.log('estado inicial: ' + estado);
 
-                // Convertir el estado a un número
-                const estadoNumero = parseInt(estado);
+                // Añadir evento de clic al botón de eliminar
+                botonEliminar.addEventListener('click', function () {
+                    const id = row.id; // Obtener el ID de la bomba a eliminar
 
-                // Cambiar el estado (toggle)
-                const nuevoEstado = estadoNumero === 0 ? 1 : 0;
+                    // Mostrar mensaje de confirmación
+                    const confirmacion = confirm('¿Estás seguro que deseas eliminar esta bomba?');
 
-                // Actualizar el estado en la base de datos
-                console.log('el id: ' + id);
-                console.log('el estado es: ' + nuevoEstado);
+                    // Si el usuario confirma, proceder con la eliminación
+                    if (confirmacion) {
+                        eliminarBomba(id, tr); // Llamar a la función para eliminar la bomba
+                    }
+                });
 
-                // Crear un objeto FormData y añadir las variables
-                var formData = new FormData();
-                formData.append('id', id);
-                formData.append('estado', nuevoEstado);
 
-                // Enviar la solicitud POST utilizando axios
-                axios.post('../php/actualizarestado.php', formData)
-                    .then(response => {
-                        console.log(response.data); // Imprimir la respuesta del PHP por consola
-                        // Actualizar el estado del botón solo si la solicitud es exitosa
-                        button.textContent = nuevoEstado;
-                    })
-                    .catch(error => {
-                        console.error('Error al cambiar el estado:', error);
-                    });
-            } catch (error) {
-                console.error('Error al cambiar el estado:', error);
-            }
+
+                celdaEliminar.appendChild(botonEliminar);
+                tablaBody.appendChild(tr);
+
+            });
+        })
+        .catch(error => console.error('Error al obtener los datos:', error));
+
+
+
+
+
+    function cambiarEstado(id, button, estado) {
+        try {
+            console.log('estado inicial: ' + estado);
+
+            // Convertir el estado a un número
+            const estadoNumero = parseInt(estado);
+
+            // Cambiar el estado (toggle)
+            const nuevoEstado = estadoNumero === 0 ? 1 : 0;
+
+            // Actualizar el estado en la base de datos
+            console.log('el id: ' + id);
+            console.log('el estado es: ' + nuevoEstado);
+
+            // Crear un objeto FormData y añadir las variables
+            var formData = new FormData();
+            formData.append('id', id);
+            formData.append('estado', nuevoEstado);
+
+            // Enviar la solicitud POST utilizando axios
+            axios.post('../php/actualizarestado.php', formData)
+                .then(response => {
+                    console.log(response.data); // Imprimir la respuesta del PHP por consola
+                    // Actualizar el estado del botón solo si la solicitud es exitosa
+                    button.textContent = nuevoEstado;
+                })
+                .catch(error => {
+                    console.error('Error al cambiar el estado:', error);
+                });
+        } catch (error) {
+            console.error('Error al cambiar el estado:', error);
         }
+    }
 
 
-        function agregarBomba() {
-            var nombreBomba = document.getElementById('nombreBomba').value;
-            console.log(nombreBomba);
 
-            var Data = new FormData();
-            Data.append('nombre', nombreBomba);
-            Data.append('estado', 0);
 
-            axios.post('../php/agregarbomba.php', Data)
-                .then(function (response) {
-                    console.log(response);
-                    const tablaBody = document.getElementById('tablaBody');
+    function agregarBomba() {
+        var nombreBomba = document.getElementById('nombreBomba').value;
+        console.log(nombreBomba);
 
-                    // Obtener el ID de la última bomba en la tabla y sumarle 1
-                    const ultimoId = tablaBody.lastElementChild.querySelector('td:first-child').textContent;
-                    const nuevoId = parseInt(ultimoId) + 1;
+        var Data = new FormData();
+        Data.append('nombre', nombreBomba);
+        Data.append('estado', 0);
 
-                    // Crear una nueva fila para la tabla
-                    const tr = document.createElement('tr');
-                    tr.innerHTML = `
+        axios.post('../php/agregarbomba.php', Data)
+            .then(function (response) {
+                console.log(response);
+                const tablaBody = document.getElementById('tablaBody');
+
+                // Obtener el ID de la última bomba en la tabla y sumarle 1
+                const ultimoId = tablaBody.lastElementChild.querySelector('td:first-child').textContent;
+                const nuevoId = parseInt(ultimoId) + 1;
+
+                // Crear una nueva fila para la tabla
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
                 <td class="py-2 px-4 border-b text-center">${nuevoId}</td>
                 <td class="py-2 px-4 border-b text-center">${nombreBomba}</td>
                 <td class="py-2 px-4 border-b text-center">
@@ -227,74 +320,70 @@
                 </td>
             `;
 
-                    // Agregar la nueva fila a la tabla
-                    tablaBody.appendChild(tr);
+                // Agregar la nueva fila a la tabla
+                tablaBody.appendChild(tr);
 
-                    // Agregar funcionalidad a los botones
-                    tr.querySelector('.estado-btn').addEventListener('click', function () {
-                        // Aquí puedes agregar el código para cambiar el estado de la bomba
-                        console.log('Botón de estado presionado');
+                // Agregar funcionalidad a los botones
+                tr.querySelector('.estado-btn').addEventListener('click', function () {
+                    // Aquí puedes agregar el código para cambiar el estado de la bomba
+                    console.log('Botón de estado presionado');
 
-                        // Obtener el botón
-                        const boton = this; // 'this' se refiere al botón que se hizo clic
+                    // Obtener el botón
+                    const boton = this; // 'this' se refiere al botón que se hizo clic
 
-                        // Obtener el texto del botón
-
-
-                        cambiarEstado(nuevoId, boton, boton.innerText);
+                    // Obtener el texto del botón
 
 
-                    });
+                    cambiarEstado(nuevoId, boton, boton.innerText);
 
 
-                    tr.querySelector('.eliminar-btn').addEventListener('click', function () {
-                        // Aquí puedes agregar el código para eliminar la bomba
-                        console.log('Botón de eliminar presionado');
-                        eliminarBomba(nuevoId, tr);
-                    });
-                })
-                .catch(function (error) {
-                    console.error(error);
                 });
+
+
+                tr.querySelector('.eliminar-btn').addEventListener('click', function () {
+                    // Aquí puedes agregar el código para eliminar la bomba
+                    console.log('Botón de eliminar presionado');
+                    eliminarBomba(nuevoId, tr);
+                });
+            })
+            .catch(function (error) {
+                console.error(error);
+            });
+    }
+
+
+
+
+    function eliminarBomba(id, row) {
+        try {
+            // Eliminar la fila de la tabla
+            row.remove();
+            console.log(id);
+
+            var Data2 = new FormData();
+            Data2.append('id', id);
+
+
+            // Realizar la solicitud para eliminar la bomba de la base de datos
+            axios.post('../php/eliminarbomba.php', Data2)
+                .then(response => {
+                    console.log(response.data); // Imprimir la respuesta del PHP por consola
+                })
+                .catch(error => {
+                    console.error('Error al eliminar la bomba:', error);
+                });
+        } catch (error) {
+            console.error('Error al eliminar la bomba:', error);
         }
+    }
+
+
+</script>
 
 
 
 
-        function eliminarBomba(id, row) {
-            try {
-                // Eliminar la fila de la tabla
-                row.remove();
-                console.log(id);
-
-                var Data2 = new FormData();
-                Data2.append('id', id);
-
-
-                // Realizar la solicitud para eliminar la bomba de la base de datos
-                axios.post('../php/eliminarbomba.php', Data2)
-                    .then(response => {
-                        console.log(response.data); // Imprimir la respuesta del PHP por consola
-                    })
-                    .catch(error => {
-                        console.error('Error al eliminar la bomba:', error);
-                    });
-            } catch (error) {
-                console.error('Error al eliminar la bomba:', error);
-            }
-        }
-
-
-    </script>
-
-
-
-
-
-
-
-
-    </script>
+</script>
 
 
 </body>
