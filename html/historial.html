@@ -30,108 +30,109 @@
 
 <body class="bg-gray-100">
 
-<!-- Cabecera con logotipo y botones -->
-<header class="bg-blue-900 text-white p-4 flex flex-wrap items-center justify-between">
-    <!-- Logotipo -->
-    <div class="flex items-center">
-        <img src="../img/logo_Ox_blue.png" alt="Logo" class="w-12 h-12 mr-2">
-        <h1 class="text-2xl font-bold"><a href="inicio.html"> AquaOx </a></h1>
-    </div>
+    <!-- Cabecera con logotipo y botones -->
+    <header class="bg-blue-900 text-white p-4 flex flex-wrap items-center justify-between">
+        <!-- Logotipo -->
+        <div class="flex items-center">
+            <img src="../img/logo_Ox_blue.png" alt="Logo" class="w-12 h-12 mr-2">
+            <h1 class="text-2xl font-bold"><a href="inicio.html"> AquaOx </a></h1>
+        </div>
 
-    <!-- Botones para cada vista -->
-    <div class="flex justify-center items-center p-4 lg:w-5/6 lg:justify-center">
-        <nav class="hidden lg:block"> <!-- Oculto en dispositivos móviles -->
-            <ul class="flex flex-col lg:flex-row lg:justify-end space-y-4 lg:space-y-0 lg:space-x-14 list-none">
-                <li>
-                    <a href="inicio.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
-                </li>
-                <li>
-                    <a href="registro.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
-                </li>
-                <li>
-                    <a href="programarhora.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación
-                        de Horas</a>
-                </li>
-                <li>
-                    <a href="consumoenergia.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo
-                        Energia</a>
-                </li>
-                <li>
-                    <a href="historial.html"
-                        class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
-                </li>
-            </ul>
-        </nav>
+        <!-- Botones para cada vista -->
+        <div class="flex justify-center items-center p-4 lg:w-5/6 lg:justify-center">
+            <nav class="hidden lg:block"> <!-- Oculto en dispositivos móviles -->
+                <ul class="flex flex-col lg:flex-row lg:justify-end space-y-4 lg:space-y-0 lg:space-x-14 list-none">
+                    <li>
+                        <a href="inicio.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="registro.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
+                    </li>
+                    <li>
+                        <a href="programarhora.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación
+                            de Horas</a>
+                    </li>
+                    <li>
+                        <a href="consumoenergia.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo
+                            Energia</a>
+                    </li>
+                    <li>
+                        <a href="historial.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
+                    </li>
+                </ul>
+            </nav>
 
-        <!-- Botón para mostrar el menú en dispositivos móviles -->
-<div class="flex justify-end">
-<button id="mobileMenuBtn"
-    class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 bg-gradient-to-t from-purple-600 to-blue-600 py-2 px-4 rounded-md">
-    Menú <span aria-hidden="true">&darr;</span>
-</button>
-</div>
-
-
-
-
-    </div>
-
-
-
-
-</header>
-
-<!-- Menú desplegable en dispositivos móviles -->
-<div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-900 text-white ">
-    <ul class="flex flex-col space-y-4 list-none">
-        <li>
-            <a href="inicio.html" class="font-extrabold text-lg hover:underline"
-                onclick="hideMobileMenu()">Inicio</a>
-        </li>
-        <li>
-            <a href="registro.html" class="font-extrabold text-lg hover:underline"
-                onclick="hideMobileMenu()">Registros</a>
-        </li>
-        <li>
-            <a href="programarhora.html" class="font-extrabold text-lg hover:underline"
-                onclick="hideMobileMenu()">Programación de Horas</a>
-        </li>
-        <li>
-            <a href="consumoenergia.html" class="font-extrabold text-lg hover:underline"
-                onclick="hideMobileMenu()">Consumo Energia</a>
-        </li>
-        <li>
-            <a href="historial.html" class="font-extrabold text-lg hover:underline"
-                onclick="hideMobileMenu()">Historial</a>
-        </li>
-        <li>
-            <!-- Botón para iniciar sesión en tamaños de pantalla grandes -->
-            <div class="flex justify-center p-2 lg:justify-end">
-                <a href="http://localhost/proyectoOxigenador/"
-                    class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Salir <span aria-hidden="true">&rarr;</span></a>
+            <!-- Botón para mostrar el menú en dispositivos móviles -->
+            <div class="flex justify-end">
+                <button id="mobileMenuBtn"
+                    class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 bg-gradient-to-t from-purple-600 to-blue-600 py-2 px-4 rounded-md">
+                    Menú <span aria-hidden="true">&darr;</span>
+                </button>
             </div>
-        </li>
-    </ul>
-
-</div>
 
 
 
-<script>
-    // JavaScript para mostrar/ocultar el menú en dispositivos móviles
-    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
 
-    mobileMenuBtn.addEventListener('click', () => {
-        mobileMenu.classList.toggle('visible');
-    });
-</script>
+        </div>
 
-        
+
+
+
+    </header>
+
+    <!-- Menú desplegable en dispositivos móviles -->
+    <div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-900 text-white ">
+        <ul class="flex flex-col space-y-4 list-none">
+            <li>
+                <a href="inicio.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Inicio</a>
+            </li>
+            <li>
+                <a href="registro.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Registros</a>
+            </li>
+            <li>
+                <a href="programarhora.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Programación de Horas</a>
+            </li>
+            <li>
+                <a href="consumoenergia.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Consumo Energia</a>
+            </li>
+            <li>
+                <a href="historial.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Historial</a>
+            </li>
+            <li>
+                <!-- Botón para iniciar sesión en tamaños de pantalla grandes -->
+                <div class="flex justify-center p-2 lg:justify-end">
+                    <a href="http://localhost/proyectoOxigenador/"
+                        class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Salir
+                        <span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+
+
+    <script>
+        // JavaScript para mostrar/ocultar el menú en dispositivos móviles
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('visible');
+        });
+    </script>
+
+
     </header>
 
     <!-- Cuerpo (contenedor principal) -->
@@ -141,10 +142,10 @@
         <h2 class="text-xl font-bold mb-4">Historial</h2>
 
         <!-- Tabla para mostrar los datos -->
-    <table id="tabla" class="w-full bg-white border border-gray-300 rounded-md shadow-md">
+        <table id="tabla" class="w-full bg-white border border-gray-300 rounded-md shadow-md">
             <thead>
                 <tr>
-                    <th class="py-2 px-4 border-b bg-gray-300">Id</th>
+                  
                     <th class="py-2 px-4 border-b bg-gray-300">Id Bomba</th>
                     <th class="py-2 px-4 border-b bg-gray-300">Estado</th>
                     <th class="py-2 px-4 border-b bg-gray-300">Fecha</th>
@@ -164,25 +165,38 @@
 
     <script>
 
+        function formatTime(timeString) {
+            const time = timeString.split(':');
+            let hours = parseInt(time[0]);
+            let minutes = parseInt(time[1]);
+            let ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            let strTime = hours + ':' + minutes + ' ' + ampm;
+            return strTime;
+        }
+
         
 
         // Realizar la solicitud GET al archivo PHP para obtener los datos
         fetch('../php/historial.php')
-        .then(response => response.json())
+            .then(response => response.json())
             .then(data => {
+              console.log(data);
                 // Llenar la tabla con los datos obtenidos
                 const tablaBody = document.getElementById('tablaBody');
-                const maxRows = 20; // Define el número máximo de filas a mostrar
+                const maxRows = 200; // Define el número máximo de filas a mostrar
 
                 // Iterar sobre los datos y aplicar el sombreado
                 data.slice(0, maxRows).forEach((row, index) => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                        <td class="py-2 px-4 border-b text-center">${row.id}</td>
-                        <td class="py-2 px-4 border-b text-center">${row.id_registro}</td>
-                        <td class="py-2 px-4 border-b text-center">${row.estado}</td>
+                       
+                        <td class="py-2 px-4 border-b text-center">${row.nombre_bomba}</td>
+                        <td class="py-2 px-4 border-b text-center">${row.estado === '1'? 'Encendido':'Apagado'}</td>
                         <td class="py-2 px-4 border-b text-center">${row.fecha}</td>
-                        <td class="py-2 px-4 border-b text-center">${row.hora}</td>
+                        <td class="py-2 px-4 border-b text-center">${formatTime(row.hora)}</td>
                     `;
                     // Aplicar sombreado a cada dos filas
                     if (index % 4 < 2) {
@@ -192,6 +206,7 @@
                 });
             })
             .catch(error => console.error('Error al obtener los datos:', error));
+
     </script>
 
 

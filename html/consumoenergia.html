@@ -235,8 +235,8 @@
                     console.log(response.data);
                     console.log("correcto")
                     var miH2 = document.getElementById("miH2");
-                    const dato = response.data.costo_total.toString();
-                    miH2.textContent = "El precio de la energia consumida es $" + dato + "Pesos ";
+                    const dato = response.data.costo_total;
+                    miH2.textContent = "El precio de la energia consumida es $ " + dato.toLocaleString('es-CO')+ " Pesos ";
                 })
                 .catch(error => {
                     console.error('Error al eliminar la bomba:', error);
