@@ -68,13 +68,17 @@
             </nav>
 
             <!-- Botón para mostrar el menú en dispositivos móviles -->
-            <div class="flex justify-end">
+            <div class="flex justify-end md:hidden lg:hidden xl:hidden">
                 <button id="mobileMenuBtn"
-                    class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 bg-gradient-to-t from-purple-600 to-blue-600 py-2 px-4 rounded-md">
-                    Menú <span aria-hidden="true">&darr;</span>
+                    class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 bg-gradient-to-t from-purple-600 to-blue-600 py-2 px-3 rounded-md">
+                    <!-- Ícono de barras horizontales -->
+                    <svg class="w-6 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 11h16M4 16h16M4"></path>
+                    </svg>
                 </button>
             </div>
-
+            
 
 
 
@@ -111,7 +115,7 @@
             <li>
                 <!-- Botón para iniciar sesión en tamaños de pantalla grandes -->
                 <div class="flex justify-center p-2 lg:justify-end">
-                    <a href="http://localhost/proyectoOxigenador/"
+                    <a href="https://0xigenador.000webhostapp.com/"
                         class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Salir
                         <span aria-hidden="true">&rarr;</span></a>
                 </div>
@@ -146,7 +150,7 @@
             <thead>
                 <tr>
                   
-                    <th class="py-2 px-4 border-b bg-gray-300">Id Bomba</th>
+                    <th class="py-2 px-4 border-b bg-gray-300">Bomba</th>
                     <th class="py-2 px-4 border-b bg-gray-300">Estado</th>
                     <th class="py-2 px-4 border-b bg-gray-300">Fecha</th>
                     <th class="py-2 px-4 border-b bg-gray-300">Hora</th>
