@@ -12,22 +12,22 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelectPlugin.js"></script>
 </head>
 
-    <style>
-        /* Estilos personalizados */
-        .mobile-menu {
-            max-height: 0;
-            /* Por defecto oculto en dispositivos móviles */
-            overflow: hidden;
-            /* Oculta el desbordamiento */
-            transition: max-height 0.5s ease;
-            /* Transición para suavizar la aparición */
-        }
+<style>
+    /* Estilos personalizados */
+    .mobile-menu {
+        max-height: 0;
+        /* Por defecto oculto en dispositivos móviles */
+        overflow: hidden;
+        /* Oculta el desbordamiento */
+        transition: max-height 0.5s ease;
+        /* Transición para suavizar la aparición */
+    }
 
-        .mobile-menu.visible {
-            max-height: 100vh;
-            /* Altura máxima para el menú */
-        }
-    </style>
+    .mobile-menu.visible {
+        max-height: 100vh;
+        /* Altura máxima para el menú */
+    }
+</style>
 
 </head>
 
@@ -70,18 +70,13 @@
                 </ul>
             </nav>
 
-            <div class="flex justify-end md:hidden lg:hidden xl:hidden">
-                <button id="mobileMenuBtn"
-                    class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 bg-gradient-to-t from-purple-600 to-blue-600 py-2 px-3 rounded-md">
-                    <!-- Ícono de barras horizontales -->
-                    <svg class="w-6 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 11h16M4 16h16M4"></path>
-                    </svg>
-                </button>
-            </div>
-            
-            
+            <!-- Botón para mostrar el menú en dispositivos móviles -->
+<div class="flex justify-end">
+    <button id="mobileMenuBtn"
+        class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 bg-gradient-to-t from-purple-600 to-blue-600 py-2 px-4 rounded-md">
+        Menú <span aria-hidden="true">&darr;</span>
+    </button>
+</div>
 
 
 
@@ -119,7 +114,7 @@
             <li>
                 <!-- Botón para iniciar sesión en tamaños de pantalla grandes -->
                 <div class="flex justify-center p-2 lg:justify-end">
-                    <a href="https://0xigenador.000webhostapp.com/"
+                    <a href="http://localhost/proyectoOxigenador/"
                         class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Salir <span aria-hidden="true">&rarr;</span></a>
                 </div>
             </li>
@@ -140,7 +135,7 @@
     </script>
 
 
-        
+
     </header>
 
     <div class="max-w-2xl mx-auto p-6">
@@ -223,13 +218,13 @@
         llenarOpcionesBomba();
 
 
-        
+
         function calcularDuracion() {
             const p_id_registro = document.getElementById('bombaSelect').value;
-            const p_fecha = document.getElementById('fechaInput').value;
+            const p_fecha = '2024-04-09';
             const valorKilovatio = document.getElementById('kilovatioInput').value;
             console.log(valorKilovatio);
-
+            console.log(p_fecha);
             var Data2 = new FormData();
             Data2.append('id', p_id_registro);
             Data2.append('fecha', p_fecha);
@@ -241,7 +236,7 @@
                     console.log("correcto")
                     var miH2 = document.getElementById("miH2");
                     const dato = response.data.costo_total;
-                    miH2.textContent = "El precio de la energia consumida es $ " + dato.toLocaleString('es-CO')+ " Pesos ";
+                    miH2.textContent = "El precio de la energia consumida es $ " + dato.toLocaleString('es-CO') + " Pesos ";
                 })
                 .catch(error => {
                     console.error('Error al eliminar la bomba:', error);
@@ -256,7 +251,7 @@
         function updateFlatpickr(option) {
             if (option === 'mes') {
                 flatpickrInstance.config.disable = [
-                    function(date) {
+                    function (date) {
                         // Deshabilitar la selección de días
                         return !(date.getMonth() === flatpickrInstance.currentMonth &&
                             date.getFullYear() === flatpickrInstance.currentYear);
@@ -272,7 +267,7 @@
         }
 
         // Llamar a la función para actualizar Flatpickr cuando cambie la opción de visualización
-        document.getElementById('opcionSelect').addEventListener('change', function() {
+        document.getElementById('opcionSelect').addEventListener('change', function () {
             const opcionSelect = this.value;
 
             // Actualizar Flatpickr con la configuración adecuada según la opción seleccionada
