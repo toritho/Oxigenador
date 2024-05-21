@@ -39,8 +39,8 @@
         </div>
 
         <!-- Botones para cada vista -->
-        <div class="flex justify-center items-center p-4 lg:w-5/6 lg:justify-center ">
-            <nav class="hidden lg:block "> <!-- Oculto en dispositivos móviles -->
+        <div class="flex justify-center items-center p-4 lg:w-5/6 lg:justify-center">
+            <nav class="hidden lg:block"> <!-- Oculto en dispositivos móviles -->
                 <ul class="flex flex-col lg:flex-row lg:justify-end space-y-4 lg:space-y-0 lg:space-x-14 list-none">
                     <li>
                         <a href="inicio.html"
@@ -68,21 +68,12 @@
             </nav>
 
             <!-- Botón para mostrar el menú en dispositivos móviles -->
-            <div class="flex justify-end md:hidden lg:hidden xl:hidden">
+            <div class="flex justify-end">
                 <button id="mobileMenuBtn"
-                    class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 bg-gradient-to-t from-purple-600 to-blue-600 py-2 px-3 rounded-md">
-                    <!-- Ícono de barras horizontales -->
-                    <svg class="w-6 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M4 6h16M4 11h16M4 16h16M4"></path>
-                    </svg>
+                    class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 bg-gradient-to-t from-purple-600 to-blue-600 py-2 px-4 rounded-md">
+                    Menú <span aria-hidden="true">&darr;</span>
                 </button>
             </div>
-
-
-
-
-
 
 
 
@@ -95,7 +86,7 @@
     </header>
 
     <!-- Menú desplegable en dispositivos móviles -->
-    <div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-900 text-white  ">
+    <div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-900 text-white ">
         <ul class="flex flex-col space-y-4 list-none">
             <li>
                 <a href="inicio.html" class="font-extrabold text-lg hover:underline"
@@ -120,8 +111,9 @@
             <li>
                 <!-- Botón para iniciar sesión en tamaños de pantalla grandes -->
                 <div class="flex justify-center p-2 lg:justify-end">
-                    <a href="https://0xigenador.000webhostapp.com/"
-                        class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Salir <span aria-hidden="true">&rarr;</span></a>
+                    <a href="http://localhost/proyectoOxigenador/"
+                        class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Salir
+                        <span aria-hidden="true">&rarr;</span></a>
                 </div>
             </li>
         </ul>
@@ -138,20 +130,7 @@
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('visible');
         });
-
-           // JavaScript para resaltar la vista activa
-    const menuItems = document.querySelectorAll('.menu-item');
-
-menuItems.forEach(item => {
-    item.addEventListener('click', () => {
-        menuItems.forEach(i => i.classList.remove('bg-blue-700')); // Elimina el fondo azul de todos los elementos
-        item.classList.add('bg-blue-700'); // Agrega el fondo azul al elemento clickeado
-    });
-});
-
-
     </script>
-
 
 
 </body>
@@ -211,6 +190,7 @@ menuItems.forEach(item => {
 </div>
 
 <script>
+    // Fetch inicial para obtener los datos y configurar la tabla
     fetch('../php/registro.php')
         .then(response => response.json())
         .then(data => {
@@ -219,35 +199,33 @@ menuItems.forEach(item => {
             data.forEach(row => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                <td class="py-2 px-4 border-b text-center">${row.id}</td>
-                <td class="py-2 px-4 border-b text-center">${row.nombre}</td>
-                <td class="py-2 px-4 border-b text-center"></td>
-            `;
+                    <td class="py-2 px-4 border-b text-center">${row.id}</td>
+                    <td class="py-2 px-4 border-b text-center">${row.nombre}</td>
+                    <td class="py-2 px-4 border-b text-center"></td>
+                `;
 
                 const celdaEstado = tr.querySelector('td:nth-child(3)');
                 const boton = document.createElement('button');
                 boton.setAttribute('class', 'estado-btn');
+                boton.setAttribute('data-estado', row.estado); // Guardar el estado inicial en un atributo del botón
+
                 boton.setAttribute('style', 'width: 70px; padding: 9px 18px; background-color: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 5px');
-                boton.innerText = row.estado=== '1'? 'Encendido':'Apagado';
-
-
-
+                
+                boton.innerText = row.estado === '1' ? 'Encendido' : 'Apagado';
 
                 // Añadir evento de clic al botón
                 boton.addEventListener('click', function () {
                     const id = row.id; // Obtener el ID del botón
-                    cambiarEstado(id, this, row.estado, row); // Pasar 'row' como argumento adicional
+                    const estadoActual = this.getAttribute('data-estado'); // Obtener el estado actual del atributo del botón
+                    cambiarEstado(id, this, estadoActual);
                 });
 
-                celdaEstado.appendChild(boton)
+                celdaEstado.appendChild(boton);
 
-                const celdaEliminar = tr.querySelector('td:nth-child(3)');
                 const botonEliminar = document.createElement('button');
                 botonEliminar.setAttribute('class', 'eliminar-btn');
                 botonEliminar.setAttribute('style', 'padding: 8px 15px; background-color: #f44336; color: white; border: none; border-radius: 4px; cursor: pointer; margin: 3px');
                 botonEliminar.innerText = 'eliminar';
-
-
 
                 // Añadir evento de clic al botón de eliminar
                 botonEliminar.addEventListener('click', function () {
@@ -262,53 +240,54 @@ menuItems.forEach(item => {
                     }
                 });
 
-
-
-                celdaEliminar.appendChild(botonEliminar);
+                celdaEstado.appendChild(botonEliminar);
                 tablaBody.appendChild(tr);
-
             });
         })
         .catch(error => console.error('Error al obtener los datos:', error));
 
 
+        function cambiarEstado(id, button, estadoActual) {
+    try {
+        // Convertir el estado a un número
+        const estadoNumero = parseInt(estadoActual);
 
+        // Cambiar el estado (toggle)
+        const nuevoEstado = estadoNumero === 0 ? 1 : 0;
 
+        // Crear un objeto FormData y añadir las variables
+        var formData = new FormData();
+        formData.append('id', id);
+        formData.append('estado', nuevoEstado);
 
-    // Función cambiarEstado con 'row' como argumento adicional
-    function cambiarEstado(id, button, estado, row) {
-        try {
-            console.log('estado inicial: ' + estado);
+        // Enviar la solicitud POST utilizando axios
+        axios.post('../php/actualizarestado.php', formData)
+            .then(response => {
+                console.log(response.data); // Imprimir la respuesta del PHP por consola
 
-            // Convertir el estado a un número
-            const estadoNumero = parseInt(estado);
+                // Cambiar el color de fondo del botón según el nuevo estado
+                if (nuevoEstado === 1) {
+                    button.style.backgroundColor = 'blue'; // Cambiar a azul cuando está encendido
+                    button.style.color = 'white'; // Asegurarse de que el texto sea blanco
+                } else {
+                    button.style.backgroundColor = 'red'; // Cambiar a rojo cuando está apagado
+                    button.style.color = 'white'; // Asegurarse de que el texto sea blanco
+                }
 
-            // Cambiar el estado (toggle)
-            const nuevoEstado = estadoNumero === 0 ? 1 : 0;
+                // Actualizar el texto del botón según el nuevo estado
+                button.textContent = nuevoEstado === 1 ? 'Encendido' : 'Apagado';
 
-            // Actualizar el estado en la base de datos
-            console.log('el id: ' + id);
-            console.log('el estado es: ' + nuevoEstado);
-
-            // Crear un objeto FormData y añadir las variables
-            var formData = new FormData();
-            formData.append('id', id);
-            formData.append('estado', nuevoEstado);
-
-            // Enviar la solicitud POST utilizando axios
-            axios.post('../php/actualizarestado.php', formData)
-                .then(response => {
-                    console.log(response.data); // Imprimir la respuesta del PHP por consola
-                    // Actualizar el estado del botón solo si la solicitud es exitosa
-                    button.textContent = nuevoEstado=== 1 ? 'Encendido':'Apagado';
-                })
-                .catch(error => {
-                    console.error('Error al cambiar el estado:', error);
-                });
-        } catch (error) {
-            console.error('Error al cambiar el estado:', error);
-        }
+                // Actualizar el atributo `data-estado` del botón para reflejar el nuevo estado
+                button.setAttribute('data-estado', nuevoEstado);
+            })
+            .catch(error => {
+                console.error('Error al cambiar el estado:', error);
+            });
+    } catch (error) {
+        console.error('Error al cambiar el estado:', error);
     }
+}
+
 
 
 
