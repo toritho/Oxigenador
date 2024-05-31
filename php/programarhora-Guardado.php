@@ -9,6 +9,9 @@ require_once '../conexion.php';
 $bombaId = $_POST['bombaId'];
 $horaEncendido = $_POST['horaEncendido'];
 $horaApagado = $_POST['horaApagado'];
+$regla = $_POST['regla'];
+$regla  = filter_var($regla , FILTER_VALIDATE_BOOLEAN);
+$regla = $regla  ? 1 :0;
 
 // Validación adicional si es necesario
 
@@ -26,10 +29,10 @@ if ($resultCheckExistence->num_rows > 0) {
 
     if ($count > 0) {
         // Si el registro ya existe, realizar un UPDATE
-        $sql = "UPDATE programarhora SET h_encendido = '$horaEncendido', h_apagado = '$horaApagado' WHERE id = $bombaId";
+        $sql = "UPDATE programarhora SET h_encendido = '$horaEncendido', h_apagado = '$horaApagado', estado1='$regla' WHERE id = $bombaId";
     } else {
         // Si el registro no existe, realizar un INSERT
-        $sql = "INSERT INTO programarhora (id, h_encendido, h_apagado) VALUES ($bombaId, '$horaEncendido', '$horaApagado')";
+        $sql = "INSERT INTO programarhora (id, h_encendido, h_apagado,estado1,estado2) VALUES ($bombaId, '$horaEncendido', '$horaApagado','$regla','$regla')";
     }
 } else {
     echo json_encode(['error' => 'Error al verificar la existencia del registro: ' . $conn->error]);

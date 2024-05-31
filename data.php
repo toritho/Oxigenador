@@ -1,7 +1,7 @@
 <?php
 
 
-//require_once('../controller/metodos.php');
+require_once('./php/encendidoprogramado.php');
 
 
 

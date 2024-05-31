@@ -8,146 +8,138 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-   
-        <style>
-            /* Estilos personalizados */
-            .mobile-menu {
-                max-height: 0;
-                /* Por defecto oculto en dispositivos móviles */
-                overflow: hidden;
-                /* Oculta el desbordamiento */
-                transition: max-height 0.5s ease;
-                /* Transición para suavizar la aparición */
-            }
-    
-            .mobile-menu.visible {
-                max-height: 100vh;
-                /* Altura máxima para el menú */
-            }
-        </style>
-    
-    </head>
-    
-    <body class="bg-gray-100">
-    
-        <!-- Cabecera con logotipo y botones -->
-        <header class="bg-blue-900 text-white p-4 flex flex-wrap items-center justify-between">
-            <!-- Logotipo -->
-            <div class="flex items-center">
-                <img src="../img/logo_Ox_blue.png" alt="Logo" class="w-12 h-12 mr-2">
-                <h1 class="text-2xl font-bold"><a href="inicio.html"> AquaOx </a></h1>
-            </div>
-    
-            <!-- Botones para cada vista -->
-            <div class="flex justify-center items-center p-4 lg:w-5/6 lg:justify-center">
-                <nav class="hidden lg:block"> <!-- Oculto en dispositivos móviles -->
-                    <ul class="flex flex-col lg:flex-row lg:justify-end space-y-4 lg:space-y-0 lg:space-x-14 list-none">
-                        <li>
-                            <a href="inicio.html"
-                                class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
-                        </li>
-                        <li>
-                            <a href="registro.html"
-                                class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
-                        </li>
-                        <li>
-                            <a href="programarhora.html"
-                                class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación
-                                de Horas</a>
-                        </li>
-                        <li>
-                            <a href="consumoenergia.html"
-                                class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo
-                                Energia</a>
-                        </li>
-                        <li>
-                            <a href="historial.html"
-                                class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
-                        </li>
-                    </ul>
-                </nav>
-    
-                <!-- Botón para mostrar el menú en dispositivos móviles -->
-                <div class="flex justify-end md:hidden lg:hidden xl:hidden">
-                    <button id="mobileMenuBtn"
-                        class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 bg-gradient-to-t from-purple-600 to-blue-600 py-2 px-3 rounded-md">
-                        <!-- Ícono de barras horizontales -->
-                        <svg class="w-6 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M4 6h16M4 11h16M4 16h16M4"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-    
-    
-    
-    
-            </div>
-    
-    
-    
-    
-        </header>
-    
-        <!-- Menú desplegable en dispositivos móviles -->
-        <div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-900 text-white ">
-            <ul class="flex flex-col space-y-4 list-none">
-                <li>
-                    <a href="inicio.html" class="font-extrabold text-lg hover:underline"
-                        onclick="hideMobileMenu()">Inicio</a>
-                </li>
-                <li>
-                    <a href="registro.html" class="font-extrabold text-lg hover:underline"
-                        onclick="hideMobileMenu()">Registros</a>
-                </li>
-                <li>
-                    <a href="programarhora.html" class="font-extrabold text-lg hover:underline"
-                        onclick="hideMobileMenu()">Programación de Horas</a>
-                </li>
-                <li>
-                    <a href="consumoenergia.html" class="font-extrabold text-lg hover:underline"
-                        onclick="hideMobileMenu()">Consumo Energia</a>
-                </li>
-                <li>
-                    <a href="historial.html" class="font-extrabold text-lg hover:underline"
-                        onclick="hideMobileMenu()">Historial</a>
-                </li>
-                <li>
-                    <!-- Botón para iniciar sesión en tamaños de pantalla grandes -->
-                    <div class="flex justify-center p-2 lg:justify-end">
-                        <a href="https://0xigenador.000webhostapp.com/"
-                            class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Salir <span aria-hidden="true">&rarr;</span></a>
-                    </div>
-                </li>
-            </ul>
-    
+
+    <style>
+        /* Estilos personalizados */
+        .mobile-menu {
+            max-height: 0;
+            /* Por defecto oculto en dispositivos móviles */
+            overflow: hidden;
+            /* Oculta el desbordamiento */
+            transition: max-height 0.5s ease;
+            /* Transición para suavizar la aparición */
+        }
+
+        .mobile-menu.visible {
+            max-height: 100vh;
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-100">
+
+    <header class="bg-blue-900 text-white p-4 flex flex-wrap items-center justify-between">
+
+        <div class="flex items-center">
+            <img src="../img/logo_Ox_blue.png" alt="Logo" class="w-12 h-12 mr-2">
+            <h1 class="text-2xl font-bold"><a href="inicio.html"> AquaOx </a></h1>
         </div>
-    
-    
-    
-        <script>
-            // JavaScript para mostrar/ocultar el menú en dispositivos móviles
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            const mobileMenu = document.getElementById('mobileMenu');
-    
-            mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('visible');
-            });
-        </script>
-    
+
+        <div class="flex justify-center items-center p-4 lg:w-5/6 lg:justify-center">
+            <nav class="hidden lg:block">
+                <ul class="flex flex-col lg:flex-row lg:justify-end space-y-4 lg:space-y-0 lg:space-x-14 list-none">
+                    <li>
+                        <a href="inicio.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="registro.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Registros</a>
+                    </li>
+                    <li>
+                        <a href="programarhora.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Programación
+                            de Horas</a>
+                    </li>
+                    <li>
+                        <a href="consumoenergia.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Consumo
+                            Energia</a>
+                    </li>
+                    <li>
+                        <a href="historial.html"
+                            class="text-white font-extrabold text-lg hover:underline transform hover:scale-110 transition duration-300">Historial</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="flex justify-end md:hidden lg:hidden xl:hidden">
+                <button id="mobileMenuBtn"
+                    class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 bg-gradient-to-t from-purple-600 to-blue-600 py-2 px-3 rounded-md">
+                    <svg class="w-6 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 11h16M4 16h16M4"></path>
+                    </svg>
+                </button>
+            </div>
 
 
-    
-    
+
+
+
+        </div>
+
+
+
+
+    </header>
+
+    <div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-900 text-white ">
+        <ul class="flex flex-col space-y-4 list-none">
+            <li>
+                <a href="inicio.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Inicio</a>
+            </li>
+            <li>
+                <a href="registro.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Registros</a>
+            </li>
+            <li>
+                <a href="programarhora.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Programación de Horas</a>
+            </li>
+            <li>
+                <a href="consumoenergia.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Consumo Energia</a>
+            </li>
+            <li>
+                <a href="historial.html" class="font-extrabold text-lg hover:underline"
+                    onclick="hideMobileMenu()">Historial</a>
+            </li>
+            <li>
+                <div class="flex justify-center p-2 lg:justify-end">
+                    <a href="https://0xigenador.000webhostapp.com/"
+                        class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Salir
+                        <span aria-hidden="true">&rarr;</span></a>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+
+
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('visible');
+        });
+    </script>
+
+
+
+
+
     </header>
     </header>
 
     <form id="programarForm" class="bg-gray-100 p-4 rounded-lg shadow-md max-w-2xl mx-auto mt-10">
         <label for="bombaSelector" class="block mb-5 text-lg font-bold ">Selecciona la bomba a programar:</label>
         <select id="bombaSelector" onchange="mostrarControles()" class="w-full p-2 mb-4 border border-gray-300 rounded">
-            <!-- Opciones de las bombas -->
-            <!-- Agrega más opciones según sea necesario -->
+
         </select>
 
         <div id="controles" style="display: none; margin-top: 15px;">
@@ -157,13 +149,42 @@
             <label for="horaApagado" class="block mb-2">Hora de Apagado:</label>
             <input type="time" id="horaApagado" required class="w-full p-2 mb-4 border border-gray-300 rounded">
 
-            <button type="button" id="guardarBtn" class="bg-blue-500 text-white p-2 rounded cursor-pointer">Guardar</button>
+            <div class="flex items-center mb-4">
+                <input id="default-checkbox" type="checkbox" value=""
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Encender Regla</label>
+            </div>
+            <div class="flex items-center">
+                <input checked id="checked-checkbox" type="checkbox" value=""
+                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                <label for="checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Apagar Regla</label>
+            </div>
+            <br>
+
+            <button type="button" id="guardarBtn"
+                class="bg-blue-500 text-white p-2 rounded cursor-pointer">Guardar</button>
         </div>
     </form>
 
 
 
     <script>
+
+        var estadoregla;
+
+        document.getElementById('default-checkbox').addEventListener('change', function () {
+            if (this.checked) {
+                document.getElementById('checked-checkbox').checked = false;
+                estadoregla = true;
+            }
+        });
+
+        document.getElementById('checked-checkbox').addEventListener('change', function () {
+            if (this.checked) {
+                document.getElementById('default-checkbox').checked = false;
+                estadoregla = false;
+            }
+        });
 
         function mostrarControles() {
             var bombaSelector = document.getElementById("bombaSelector");
@@ -177,16 +198,9 @@
         }
 
 
-    </script>
-
-
-    <!-- ... (código anterior) ... -->
-
-    <script>
         document.addEventListener("DOMContentLoaded", function () {
             llenarOpcionesBomba();
 
-            // Agrega un evento 'change' al select
             document.getElementById("bombaSelector").addEventListener("change", function () {
                 obtenerDatosBomba();
             });
@@ -199,7 +213,6 @@
 
 
         function llenarOpcionesBomba() {
-            // Realiza una llamada Axios para obtener las opciones de las bombas
             axios.get('../php/programarhora2.php')
                 .then(function (response) {
                     var data = response.data;
@@ -226,7 +239,6 @@
             var bombaId = document.getElementById("bombaSelector").value;
 
             if (bombaId !== "selec") {
-                // Realiza una llamada Axios para obtener datos del usuario
                 axios.get('../php/programarhora.php', {
                     params: {
                         id: bombaId
@@ -238,6 +250,21 @@
 
                         document.getElementById("horaEncendido").value = data.h_encendido;
                         document.getElementById("horaApagado").value = data.h_apagado;
+                        console.log(data.estado1 === "1");
+                        if (data.estado1 === "1") {
+                            document.getElementById('default-checkbox').checked = true;
+                            document.getElementById('checked-checkbox').checked = false;
+                            estadoregla = true;
+                        } else {
+                            if (data.estado1 === "0") {
+                                document.getElementById('default-checkbox').checked = false;
+                                document.getElementById('checked-checkbox').checked = true;
+                                estadoregla = false;
+                            }
+                        }
+
+
+
                     })
                     .catch(function (error) {
                         console.error('Error al obtener datos de bomba: ', error);
@@ -280,6 +307,8 @@
             formData.append("bombaId", bombaId);
             formData.append("horaEncendido", horaEncendido);
             formData.append("horaApagado", horaApagado);
+            formData.append("regla", estadoregla);
+
             axios.post('../php/programarhora-Guardado.php', formData)
                 .then(function (response) {
                     console.log(response.data);
@@ -290,7 +319,7 @@
                     alert('Error al guardar datos. Consulta la consola para más detalles.');
                 });
 
-            }
+        }
 
 
     </script>

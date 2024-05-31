@@ -29,18 +29,16 @@
 </head>
     
 <body class="bg-gray-100">
-
-    <!-- Cabecera con logotipo y botones -->
+ 
     <header class="bg-blue-900 text-white p-4 flex flex-wrap items-center justify-between">
-        <!-- Logotipo -->
+       
         <div class="flex items-center">
             <img src="../img/logo_Ox_blue.png" alt="Logo" class="w-12 h-12 mr-2">
             <h1 class="text-2xl font-bold"><a href="inicio.html"> AquaOx </a></h1>
         </div>
-
-        <!-- Botones para cada vista -->
+ 
         <div class="flex justify-center items-center p-4 lg:w-5/6 lg:justify-center">
-            <nav class="hidden lg:block"> <!-- Oculto en dispositivos móviles -->
+            <nav class="hidden lg:block">  
                 <ul class="flex flex-col lg:flex-row lg:justify-end space-y-4 lg:space-y-0 lg:space-x-14 list-none">
                     <li>
                         <a href="inicio.html"
@@ -67,12 +65,10 @@
                 </ul>
             </nav>
 
-            <!-- Botón para mostrar el menú en dispositivos móviles -->
-            <div class="flex justify-end md:hidden lg:hidden xl:hidden">
+             <div class="flex justify-end md:hidden lg:hidden xl:hidden">
                 <button id="mobileMenuBtn"
                     class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 bg-gradient-to-t from-purple-600 to-blue-600 py-2 px-3 rounded-md">
-                    <!-- Ícono de barras horizontales -->
-                    <svg class="w-6 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                     <svg class="w-6 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 11h16M4 16h16M4"></path>
                     </svg>
@@ -90,8 +86,7 @@
 
     </header>
 
-    <!-- Menú desplegable en dispositivos móviles -->
-    <div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-900 text-white ">
+     <div id="mobileMenu" class="mobile-menu lg:hidden bg-blue-900 text-white ">
         <ul class="flex flex-col space-y-4 list-none">
             <li>
                 <a href="inicio.html" class="font-extrabold text-lg hover:underline"
@@ -114,8 +109,7 @@
                     onclick="hideMobileMenu()">Historial</a>
             </li>
             <li>
-                <!-- Botón para iniciar sesión en tamaños de pantalla grandes -->
-                <div class="flex justify-center p-2 lg:justify-end lg:hidden">
+                 <div class="flex justify-center p-2 lg:justify-end lg:hidden">
                     <a href="https://0xigenador.000webhostapp.com/"
                         class="text-white font-bold text-sm hover:underline transform hover:scale-110 transition duration-300 lg:mr-2">Salir <span aria-hidden="true">&rarr;</span></a>
                 </div>
@@ -129,8 +123,7 @@
 
 
     <script>
-        // JavaScript para mostrar/ocultar el menú en dispositivos móviles
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
 
         mobileMenuBtn.addEventListener('click', () => {
@@ -141,14 +134,11 @@
 
     </header>
 
-    <!-- Cuerpo (contenedor principal) -->
-    <div class="max-w-2xl mx-auto p-6  overflow-x-auto">
+     <div class="max-w-2xl mx-auto p-6  overflow-x-auto">
 
-        <!-- Contenido específico de la vista historial -->
-        <h2 class="text-xl font-bold mb-4">Historial</h2>
+         <h2 class="text-xl font-bold mb-4">Historial</h2>
 
-        <!-- Tabla para mostrar los datos -->
-        <table id="tabla" class="w-full bg-white border border-gray-300 rounded-md shadow-md">
+         <table id="tabla" class="w-full bg-white border border-gray-300 rounded-md shadow-md">
             <thead>
                 <tr>
                   
@@ -160,8 +150,7 @@
                 </tr>
             </thead>
             <tbody id="tablaBody" class="divide-y divide-gray-300">
-                <!-- Aquí se incluirá la lógica JavaScript para llenar los datos -->
-            </tbody>
+             </tbody>
         </table>
 
     </div>
@@ -185,17 +174,14 @@
 
         
 
-        // Realizar la solicitud GET al archivo PHP para obtener los datos
-        fetch('../php/historial.php')
+         fetch('../php/historial.php')
             .then(response => response.json())
             .then(data => {
               console.log(data);
-                // Llenar la tabla con los datos obtenidos
-                const tablaBody = document.getElementById('tablaBody');
-                const maxRows = 200; // Define el número máximo de filas a mostrar
+                 const tablaBody = document.getElementById('tablaBody');
+                const maxRows = 200;  
 
-                // Iterar sobre los datos y aplicar el sombreado
-                data.slice(0, maxRows).forEach((row, index) => {
+                 data.slice(0, maxRows).forEach((row, index) => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
                        
@@ -204,8 +190,7 @@
                         <td class="py-2 px-4 border-b text-center">${row.fecha}</td>
                         <td class="py-2 px-4 border-b text-center">${formatTime(row.hora)}</td>
                     `;
-                    // Aplicar sombreado a cada dos filas
-                    if (index % 4 < 2) {
+                     if (index % 4 < 2) {
                         tr.classList.add('bg-gray-100');
                     }
                     tablaBody.appendChild(tr);

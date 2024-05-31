@@ -6,7 +6,7 @@ require_once '../conexion.php';
 //Obtiene los datos de la bomba seleccionada
 
 //reliza consulta
-$sql = "SELECT id, h_encendido, h_apagado FROM programarhora WHERE id= $bombaId";
+$sql = "SELECT * FROM programarhora WHERE id= $bombaId";
 
 $result = $conn->query($sql);
 
